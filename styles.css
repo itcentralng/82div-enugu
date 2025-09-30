@@ -283,22 +283,7 @@ main {
     line-height: 1.2;
 }
 
-.commanders-section h1::after {
-    content: 'CHRONICLE OF HONOR';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.35em;
-    font-weight: 300;
-    color: var(--aureolin);
-    letter-spacing: 8px;
-    margin-top: 10px;
-    opacity: 0.9;
-    text-shadow: 0 0 15px rgba(248, 230, 29, 0.6);
-    animation: subtleGlow 3s ease-in-out infinite alternate;
-}
+
 
 @keyframes subtleGlow {
     from { text-shadow: 0 0 15px rgba(248, 230, 29, 0.6); }
