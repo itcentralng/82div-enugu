@@ -257,7 +257,7 @@ main {
 
 .commanders-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     padding: 80px 0 40px;
     position: relative;
@@ -747,7 +747,7 @@ main {
 /* Responsive design */
 @media (max-width: 1200px) {
     .commanders-grid {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 35px;
     }
     
@@ -766,7 +766,7 @@ main {
     }
     
     .commanders-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 25px;
         padding: 60px 0 30px;
     }
@@ -902,7 +902,7 @@ main {
     }
     
     .commanders-grid {
-        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        grid-template-columns: repeat(4, 1fr);
         gap: 50px;
     }
     
