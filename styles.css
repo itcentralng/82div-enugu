@@ -366,9 +366,10 @@ main {
 /* Style the back side */
 .commander-card-back {
     background: linear-gradient(135deg, 
-        rgba(46, 54, 90, 0.9) 0%, 
-        rgba(1, 135, 176, 0.85) 50%, 
-        rgba(248, 230, 29, 0.8) 100%);
+        rgba(46, 54, 90, 0.95) 0%, 
+        rgba(38, 45, 72, 0.92) 30%,
+        rgba(44, 43, 39, 0.88) 70%, 
+        rgba(46, 54, 90, 0.9) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     color: var(--cream);
@@ -378,6 +379,23 @@ main {
         0 8px 25px rgba(248, 230, 29, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     border: 1px solid rgba(248, 230, 29, 0.4);
+    position: relative;
+}
+
+.commander-card-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        transparent 30%,
+        rgba(248, 230, 29, 0.08) 45%,
+        rgba(248, 230, 29, 0.12) 55%,
+        transparent 70%);
+    border-radius: 20px;
+    pointer-events: none;
 }
 
 /* Hover effects for the flip card */
