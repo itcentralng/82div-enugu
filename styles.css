@@ -438,7 +438,11 @@ main {
 
 .commander-card:hover .commander-name {
     color: var(--military-green);
-    text-shadow: 0 2px 4px rgba(201, 169, 97, 0.3);
+    text-shadow: 
+        0 0 2px rgba(255, 255, 255, 0.9),
+        0 0 4px rgba(255, 255, 255, 0.7),
+        0 2px 4px rgba(201, 169, 97, 0.3);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
 }
 
 .commander-service {
