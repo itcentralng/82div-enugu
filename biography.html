@@ -38,8 +38,22 @@
 
     <main>
         <section class="biography-section">
-            <div class="biography-content" id="biographyContent">
-                <!-- Biography content will be populated by JavaScript -->
+            <div class="biography-layout">
+                <div class="portrait-container">
+                    <div class="portrait-frame">
+                        <img id="commanderPortrait" src="" alt="Commander Portrait" class="commander-portrait">
+                    </div>
+                </div>
+                <div class="biography-text-container">
+                    <div class="biography-header">
+                        <h1 id="commanderName" class="commander-title"></h1>
+                        <p id="commanderService" class="commander-service-period"></p>
+                    </div>
+                    <div class="biography-text-box">
+                        <p id="biographyText" class="typing-text"></p>
+                        <span class="typing-cursor" id="typingCursor">|</span>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

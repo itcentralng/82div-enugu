@@ -339,8 +339,11 @@ function initializeBiographyPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const commanderId = parseInt(urlParams.get('id'));
     
-    if (commanderId && biographyContent) {
+    if (commanderId) {
         displayBiography(commanderId);
+    } else {
+        // If no ID provided, show first commander by default
+        displayBiography(1);
     }
 }
 
@@ -380,24 +383,40 @@ function populateCommanders() {
     });
 }
 
-// Display biography
+// Display biography with typing animation
 function displayBiography(commanderId) {
     const commander = commanders.find(c => c.id === commanderId);
     
     if (!commander) {
-        biographyContent.innerHTML = '<p>Commander not found.</p>';
+        document.getElementById('biographyText').textContent = 'Commander not found.';
         return;
     }
     
-    biographyContent.innerHTML = `
-        <div class="biography-container">
-            <img src="${commander.image}" alt="${commander.name}" class="biography-image" onerror="this.src='images/placeholder.jpg'">
-            <div class="biography-text">
-                <h1>${commander.name}</h1>
-                <p>${commander.biography}</p>
-            </div>
-        </div>
-    `;
+    // Set the portrait and basic info
+    const portraitImg = document.getElementById('commanderPortrait');
+    const nameElement = document.getElementById('commanderName');
+    const serviceElement = document.getElementById('commanderService');
+    const biographyTextElement = document.getElementById('biographyText');
+    const cursorElement = document.getElementById('typingCursor');
+    
+    if (portraitImg) {
+        portraitImg.src = commander.image;
+        portraitImg.alt = commander.name;
+        portraitImg.onerror = function() { this.src = 'images/placeholder.jpg'; };
+    }
+    
+    if (nameElement) {
+        nameElement.textContent = commander.name;
+    }
+    
+    if (serviceElement) {
+        serviceElement.textContent = `Service Period: ${commander.yearOfService}`;
+    }
+    
+    // Start typing animation for biography text
+    if (biographyTextElement && cursorElement) {
+        startBiographyTyping(commander.biography, biographyTextElement, cursorElement);
+    }
 }
 
 // Navigation functions (fallbacks)
@@ -543,7 +562,7 @@ function createPlaceholderImage() {
     return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjQ0NDIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+UGhvdG88L3RleHQ+Cjwvc3ZnPgo=';
 }
 
-// Typing animation function
+// Typing animation function for home page
 function startTypingAnimation() {
     const textToType = "Chronicle of Commanders";
     const typedTextElement = document.getElementById('typedText');
@@ -579,6 +598,53 @@ function startTypingAnimation() {
     }
     
     // Start the typing animation after a brief delay
+    setTimeout(typeCharacter, 1000);
+}
+
+// Biography typing animation function
+function startBiographyTyping(text, textElement, cursorElement) {
+    if (!text || !textElement) return;
+    
+    // Clear any existing content
+    textElement.textContent = '';
+    
+    // Show cursor
+    if (cursorElement) {
+        cursorElement.style.display = 'inline';
+    }
+    
+    let currentIndex = 0;
+    const typingSpeed = 30; // Speed in milliseconds
+    
+    function typeCharacter() {
+        if (currentIndex < text.length) {
+            textElement.textContent = text.substring(0, currentIndex + 1);
+            currentIndex++;
+            
+            // Variable speed for punctuation
+            let delay = typingSpeed;
+            const currentChar = text[currentIndex - 1];
+            
+            if (currentChar === '.' || currentChar === '!' || currentChar === '?') {
+                delay = typingSpeed * 8; // Pause at sentence endings
+            } else if (currentChar === ',' || currentChar === ';' || currentChar === ':') {
+                delay = typingSpeed * 3; // Short pause at commas
+            } else if (currentChar === ' ') {
+                delay = typingSpeed * 0.5; // Faster for spaces
+            }
+            
+            setTimeout(typeCharacter, delay);
+        } else {
+            // Finished typing, hide cursor after a delay
+            setTimeout(() => {
+                if (cursorElement) {
+                    cursorElement.style.display = 'none';
+                }
+            }, 2000);
+        }
+    }
+    
+    // Start typing after a brief delay
     setTimeout(typeCharacter, 1000);
 }
 
