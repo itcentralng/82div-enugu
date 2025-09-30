@@ -311,34 +311,15 @@ function initializeHomePage() {
     }
 }
 
-// Start card animation
+// Start staggered card animations
 function startCardAnimation() {
-    const cards = document.querySelectorAll('.commander-card');
-    let currentIndex = 0;
-
-    function flipNextCard() {
-        if (currentIndex > 0) {
-            const prevCard = cards[currentIndex - 1];
-            if(prevCard) {
-                prevCard.classList.remove('flip');
-            }
-        }
-        
-        if (currentIndex === 0 && cards.length > 0) {
-            const lastCard = cards[cards.length - 1];
-            lastCard.classList.remove('flip');
-        }
-
-        const card = cards[currentIndex];
-        card.classList.add('flip');
-
-        currentIndex = (currentIndex + 1) % cards.length;
-        setTimeout(flipNextCard, 1000); // Time between flips
-    }
-
-    if (cards.length > 0) {
-        flipNextCard();
-    }
+    const cards = document.querySelectorAll('.commander-card-inner');
+    
+    // Add staggered animation delays to each card
+    cards.forEach((card, index) => {
+        const delay = index * 0.5; // 0.5 second delay between each card
+        card.style.animationDelay = `${delay}s`;
+    });
 }
 
 // Initialize biography page
@@ -360,10 +341,24 @@ function populateCommanders() {
         commanderCard.className = 'commander-card';
         commanderCard.onclick = () => goToBiography(commander.id);
         
+        // Truncate biography for back of card
+        const shortBio = commander.biography.length > 200 
+            ? commander.biography.substring(0, 200) + '...' 
+            : commander.biography;
+        
         commanderCard.innerHTML = `
-            <img src="${commander.image}" alt="${commander.name}" class="commander-image" onerror="this.src='images/placeholder.jpg'">
-            <div class="commander-name">${commander.name}</div>
-            <div class="commander-service">${commander.yearOfService}</div>
+            <div class="commander-card-inner">
+                <div class="commander-card-front">
+                    <img src="${commander.image}" alt="${commander.name}" class="commander-image" onerror="this.src='images/placeholder.jpg'">
+                    <div class="commander-name">${commander.name}</div>
+                    <div class="commander-service">${commander.yearOfService}</div>
+                </div>
+                <div class="commander-card-back">
+                    <h3 style="margin: 0 0 15px 0; font-family: 'Oswald', sans-serif; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--cream); text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);">${commander.name}</h3>
+                    <p style="font-size: 0.9rem; line-height: 1.5; text-align: center; margin: 0; color: var(--cream); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);">${shortBio}</p>
+                    <div style="margin-top: 15px; padding: 8px 16px; background: rgba(248, 230, 29, 0.2); border-radius: 15px; font-size: 0.8rem; font-weight: bold; color: var(--cream); text-transform: uppercase; letter-spacing: 1px;">Click for Full Biography</div>
+                </div>
+            </div>
         `;
         
         commandersGrid.appendChild(commanderCard);
