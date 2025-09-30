@@ -281,6 +281,40 @@ main {
         0 0 20px rgba(201, 169, 97, 0.3);
     position: relative;
     line-height: 1.2;
+    min-height: 80px;
+}
+
+/* Typing animation styles */
+.typing-cursor {
+    display: inline-block;
+    background-color: var(--cream);
+    width: 3px;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+#typedText {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 

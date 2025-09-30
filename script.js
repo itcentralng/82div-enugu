@@ -304,6 +304,9 @@ function initializeHomePage() {
         logo.addEventListener('click', goHome);
     }
     
+    // Start typing animation
+    startTypingAnimation();
+    
     // Populate commanders grid
     if (commandersGrid) {
         populateCommanders();
@@ -402,4 +405,43 @@ function goToBiography(commanderId) {
 function createPlaceholderImage() {
     // This is a simple placeholder - in a real application, you'd want actual images
     return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjQ0NDIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+UGhvdG88L3RleHQ+Cjwvc3ZnPgo=';
+}
+
+// Typing animation function
+function startTypingAnimation() {
+    const textToType = "Chronicle of Commanders";
+    const typedTextElement = document.getElementById('typedText');
+    const cursorElement = document.getElementById('typingCursor');
+    
+    if (!typedTextElement || !cursorElement) return;
+    
+    let currentIndex = 0;
+    let isDeleting = false;
+    
+    function typeCharacter() {
+        if (!isDeleting && currentIndex < textToType.length) {
+            // Typing forward
+            typedTextElement.textContent = textToType.substring(0, currentIndex + 1);
+            currentIndex++;
+            setTimeout(typeCharacter, 100); // 100ms between characters when typing
+        } else if (!isDeleting && currentIndex === textToType.length) {
+            // Finished typing, wait before starting to delete
+            setTimeout(() => {
+                isDeleting = true;
+                typeCharacter();
+            }, 10000); // Wait 10 seconds before deleting
+        } else if (isDeleting && currentIndex > 0) {
+            // Deleting backward
+            currentIndex--;
+            typedTextElement.textContent = textToType.substring(0, currentIndex);
+            setTimeout(typeCharacter, 50); // 50ms between characters when deleting (faster)
+        } else if (isDeleting && currentIndex === 0) {
+            // Finished deleting, wait before starting to type again
+            isDeleting = false;
+            setTimeout(typeCharacter, 2500); // Wait 2.5 seconds before typing again
+        }
+    }
+    
+    // Start the typing animation after a brief delay
+    setTimeout(typeCharacter, 1000);
 }
