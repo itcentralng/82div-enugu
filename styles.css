@@ -42,9 +42,16 @@ body::before {
     background: 
         radial-gradient(circle at 20% 20%, rgba(201, 169, 97, 0.03) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(44, 74, 59, 0.05) 0%, transparent 50%),
-        linear-gradient(45deg, transparent 40%, rgba(201, 169, 97, 0.02) 50%, transparent 60%);
+        linear-gradient(45deg, transparent 40%, rgba(201, 169, 97, 0.02) 50%, transparent 60%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="0.5" fill="%23C9A961" opacity="0.1"/><circle cx="75" cy="25" r="0.3" fill="%23C9A961" opacity="0.08"/><circle cx="50" cy="50" r="0.4" fill="%23C9A961" opacity="0.06"/><circle cx="25" cy="75" r="0.2" fill="%23C9A961" opacity="0.09"/><circle cx="75" cy="75" r="0.6" fill="%23C9A961" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
     pointer-events: none;
     z-index: -1;
+    animation: subtleFloat 20s ease-in-out infinite;
+}
+
+@keyframes subtleFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-2px) rotate(0.5deg); }
 }
 
 /* Header styles */
@@ -199,12 +206,14 @@ main {
 .commanders-section::before {
     content: '';
     position: absolute;
-    top: -30px;
+    top: -50px;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+    width: 300px;
+    height: 40px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 40"><defs><linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:%23C9A961;stop-opacity:0"/><stop offset="20%" style="stop-color:%23C9A961;stop-opacity:1"/><stop offset="50%" style="stop-color:%23D4B76A;stop-opacity:1"/><stop offset="80%" style="stop-color:%23C9A961;stop-opacity:1"/><stop offset="100%" style="stop-color:%23C9A961;stop-opacity:0"/></linearGradient></defs><rect x="0" y="18" width="300" height="4" fill="url(%23goldGrad)"/><polygon points="140,10 150,0 160,10 150,20" fill="%23C9A961"/><polygon points="130,15 140,10 140,25 130,20" fill="%23B8954A"/><polygon points="160,15 170,10 170,25 160,20" fill="%23B8954A"/></svg>') no-repeat center;
+    background-size: contain;
+    opacity: 0.8;
 }
 
 .commanders-section h1 {
@@ -234,6 +243,13 @@ main {
     letter-spacing: 8px;
     margin-top: 10px;
     opacity: 0.9;
+    text-shadow: 0 0 15px rgba(201, 169, 97, 0.6);
+    animation: subtleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes subtleGlow {
+    from { text-shadow: 0 0 15px rgba(201, 169, 97, 0.6); }
+    to { text-shadow: 0 0 25px rgba(201, 169, 97, 0.8), 0 0 35px rgba(201, 169, 97, 0.4); }
 }
 
 .commanders-grid {
@@ -285,13 +301,17 @@ main {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 8px;
     background: linear-gradient(90deg, 
-        var(--primary-gold), 
-        var(--light-gold), 
-        var(--primary-gold));
+        var(--accent-red) 0%, var(--accent-red) 20%,
+        var(--primary-gold) 20%, var(--primary-gold) 40%,
+        var(--military-green) 40%, var(--military-green) 60%,
+        var(--primary-gold) 60%, var(--primary-gold) 80%,
+        var(--accent-red) 80%, var(--accent-red) 100%);
     transform: scaleX(0);
     transition: transform 0.4s ease;
+    border-radius: 4px 4px 0 0;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .commander-card:hover {
@@ -418,6 +438,26 @@ main {
         var(--primary-gold), 
         var(--light-gold), 
         var(--primary-gold));
+}
+
+.history-section::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M0,0 L40,0 L40,20 L20,20 L20,40 L0,40 Z" fill="none" stroke="%23C9A961" stroke-width="2" opacity="0.6"/></svg>');
+}
+
+.biography-section::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M40,0 L0,0 L0,20 L20,20 L20,40 L40,40 Z" fill="none" stroke="%23C9A961" stroke-width="2" opacity="0.6"/></svg>');
 }
 
 .history-section h1 {
@@ -682,16 +722,24 @@ main {
 }
 
 .commander-card {
-    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.commander-card:nth-child(even) {
-    animation-delay: 0.1s;
-}
-
-.commander-card:nth-child(3n) {
-    animation-delay: 0.2s;
-}
+.commander-card:nth-child(1) { animation-delay: 0.1s; }
+.commander-card:nth-child(2) { animation-delay: 0.2s; }
+.commander-card:nth-child(3) { animation-delay: 0.3s; }
+.commander-card:nth-child(4) { animation-delay: 0.15s; }
+.commander-card:nth-child(5) { animation-delay: 0.25s; }
+.commander-card:nth-child(6) { animation-delay: 0.35s; }
+.commander-card:nth-child(7) { animation-delay: 0.2s; }
+.commander-card:nth-child(8) { animation-delay: 0.3s; }
+.commander-card:nth-child(9) { animation-delay: 0.4s; }
+.commander-card:nth-child(n+10) { animation-delay: 0.4s; }
+.commander-card:nth-child(4n+1) { animation-delay: 0.1s; }
+.commander-card:nth-child(4n+2) { animation-delay: 0.2s; }
+.commander-card:nth-child(4n+3) { animation-delay: 0.3s; }
+.commander-card:nth-child(4n) { animation-delay: 0.4s; }
 
 /* Responsive design */
 @media (max-width: 1200px) {
@@ -870,6 +918,74 @@ main {
     }
 }
 
+/* Custom cursor and interactive elements */
+.commander-card, .logo, .history-link, .nav-links a {
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%23C9A961" opacity="0.8"/><circle cx="12" cy="12" r="3" fill="%23ffffff"/></svg>') 12 12, pointer;
+}
+
+/* Accessibility and focus states */
+.commander-card:focus,
+.logo:focus,
+.history-link:focus,
+.nav-links a:focus {
+    outline: 3px solid var(--primary-gold);
+    outline-offset: 4px;
+}
+
+/* Selection styles */
+::selection {
+    background: var(--primary-gold);
+    color: var(--charcoal);
+}
+
+::-moz-selection {
+    background: var(--primary-gold);
+    color: var(--charcoal);
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-green);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--primary-gold), var(--light-gold));
+    border-radius: 6px;
+    border: 2px solid var(--dark-green);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--light-gold), var(--primary-gold));
+}
+
+/* Loading animation for images */
+.commander-image, .biography-image {
+    background: linear-gradient(45deg, 
+        var(--cream) 25%, 
+        var(--primary-gold) 25%, 
+        var(--primary-gold) 50%, 
+        var(--cream) 50%, 
+        var(--cream) 75%, 
+        var(--primary-gold) 75%);
+    background-size: 40px 40px;
+    animation: loadingShimmer 1.5s linear infinite;
+}
+
+.commander-image[src], .biography-image[src] {
+    background: none;
+    animation: none;
+}
+
+@keyframes loadingShimmer {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
+}
+
 /* Print styles for official documentation */
 @media print {
     body {
@@ -881,9 +997,16 @@ main {
         background: white !important;
         border: 2px solid #333 !important;
         box-shadow: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
     }
     
     .commanders-section h1 {
         color: #333 !important;
+    }
+    
+    .commanders-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
     }
 }
