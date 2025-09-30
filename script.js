@@ -307,6 +307,37 @@ function initializeHomePage() {
     // Populate commanders grid
     if (commandersGrid) {
         populateCommanders();
+        startCardAnimation();
+    }
+}
+
+// Start card animation
+function startCardAnimation() {
+    const cards = document.querySelectorAll('.commander-card');
+    let currentIndex = 0;
+
+    function flipNextCard() {
+        if (currentIndex > 0) {
+            const prevCard = cards[currentIndex - 1];
+            if(prevCard) {
+                prevCard.classList.remove('flip');
+            }
+        }
+        
+        if (currentIndex === 0 && cards.length > 0) {
+            const lastCard = cards[cards.length - 1];
+            lastCard.classList.remove('flip');
+        }
+
+        const card = cards[currentIndex];
+        card.classList.add('flip');
+
+        currentIndex = (currentIndex + 1) % cards.length;
+        setTimeout(flipNextCard, 1000); // Time between flips
+    }
+
+    if (cards.length > 0) {
+        flipNextCard();
     }
 }
 
