@@ -284,6 +284,9 @@ const biographyContent = document.getElementById('biographyContent');
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop();
     
+    // Initialize color transition system
+    initializeColorTransitions();
+    
     if (currentPage === 'index.html' || currentPage === '') {
         initializeHomePage();
     } else if (currentPage === 'biography.html') {
@@ -295,13 +298,19 @@ document.addEventListener('DOMContentLoaded', function() {
 function initializeHomePage() {
     // Add event listener for history link
     if (historyLink) {
-        historyLink.addEventListener('click', goToHistory);
+        historyLink.addEventListener('click', goToHistoryWithTransition);
+        historyLink.addEventListener('mouseenter', function() {
+            triggerHoverColorEffect(this);
+        });
     }
     
     // Add event listener for logo click
     const logo = document.getElementById('logo');
     if (logo) {
-        logo.addEventListener('click', goHome);
+        logo.addEventListener('click', goHomeWithTransition);
+        logo.addEventListener('mouseenter', function() {
+            triggerHoverColorEffect(this);
+        });
     }
     
     // Start typing animation
@@ -342,7 +351,10 @@ function populateCommanders() {
     commanders.forEach(commander => {
         const commanderCard = document.createElement('div');
         commanderCard.className = 'commander-card';
-        commanderCard.onclick = () => goToBiography(commander.id);
+        commanderCard.onclick = () => goToBiographyWithTransition(commander.id);
+        commanderCard.addEventListener('mouseenter', function() {
+            triggerHoverColorEffect(this);
+        });
         
         // Truncate biography for back of card
         const shortBio = commander.biography.length > 200 
@@ -388,7 +400,7 @@ function displayBiography(commanderId) {
     `;
 }
 
-// Navigation functions
+// Navigation functions (fallbacks)
 function goToHistory() {
     window.location.href = 'history.html';
 }
@@ -399,6 +411,130 @@ function goHome() {
 
 function goToBiography(commanderId) {
     window.location.href = `biography.html?id=${commanderId}`;
+}
+
+// Color Transition System
+function initializeColorTransitions() {
+    // Start automatic color cycling on load
+    setTimeout(() => {
+        startAutomaticColorCycle();
+    }, 2000);
+}
+
+function startAutomaticColorCycle() {
+    const container = document.querySelector('.color-transition-container');
+    const strips = document.querySelectorAll('.color-strip');
+    
+    if (!container || !strips.length) return;
+    
+    // Add auto-cycle class to enable automatic animation
+    strips.forEach(strip => {
+        strip.classList.add('auto-cycle');
+    });
+}
+
+function triggerColorTransition(callback = null) {
+    const container = document.querySelector('.color-transition-container');
+    const strips = document.querySelectorAll('.color-strip');
+    
+    if (!container || !strips.length) {
+        if (callback) callback();
+        return;
+    }
+    
+    // Remove auto-cycle classes temporarily
+    strips.forEach(strip => {
+        strip.classList.remove('auto-cycle');
+    });
+    
+    // Show container and trigger slide-in
+    container.classList.add('active');
+    
+    strips.forEach((strip, index) => {
+        setTimeout(() => {
+            strip.classList.add('slide-in');
+        }, index * 100);
+    });
+    
+    // Wait for animation to complete, then slide out
+    setTimeout(() => {
+        strips.forEach((strip, index) => {
+            setTimeout(() => {
+                strip.classList.remove('slide-in');
+                strip.classList.add('slide-out');
+            }, index * 50);
+        });
+        
+        // Execute callback in the middle of transition
+        if (callback) {
+            setTimeout(callback, 400);
+        }
+        
+        // Clean up and restart auto-cycle
+        setTimeout(() => {
+            container.classList.remove('active');
+            strips.forEach(strip => {
+                strip.classList.remove('slide-in', 'slide-out');
+                strip.classList.add('auto-cycle');
+            });
+        }, 1000);
+        
+    }, 1200);
+}
+
+function triggerHoverColorEffect(element) {
+    const hoverStrip = document.createElement('div');
+    hoverStrip.className = 'hover-color-strip';
+    hoverStrip.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, 
+            rgba(248, 230, 29, 0.3), 
+            rgba(1, 135, 176, 0.3), 
+            rgba(248, 229, 49, 0.3));
+        pointer-events: none;
+        z-index: 1;
+        transition: left 0.6s ease;
+        border-radius: inherit;
+    `;
+    
+    element.style.position = 'relative';
+    element.style.overflow = 'hidden';
+    element.appendChild(hoverStrip);
+    
+    // Trigger animation
+    setTimeout(() => {
+        hoverStrip.style.left = '100%';
+    }, 50);
+    
+    // Remove element after animation
+    setTimeout(() => {
+        if (hoverStrip.parentNode) {
+            hoverStrip.parentNode.removeChild(hoverStrip);
+        }
+    }, 700);
+}
+
+// Enhanced navigation with color transitions
+function goToHistoryWithTransition() {
+    triggerColorTransition(() => {
+        window.location.href = 'history.html';
+    });
+}
+
+function goHomeWithTransition() {
+    triggerColorTransition(() => {
+        window.location.href = 'index.html';
+    });
+}
+
+function goToBiographyWithTransition(commanderId) {
+    triggerColorTransition(() => {
+        window.location.href = `biography.html?id=${commanderId}`;
+    });
 }
 
 // Add some placeholder images if they don't exist
@@ -445,3 +581,35 @@ function startTypingAnimation() {
     // Start the typing animation after a brief delay
     setTimeout(typeCharacter, 1000);
 }
+
+// Add scroll-triggered color effects
+function initScrollColorEffects() {
+    let scrollTimeout;
+    
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        
+        scrollTimeout = setTimeout(() => {
+            const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            
+            // Trigger subtle color effects based on scroll position
+            if (scrollPercent > 0.2 && scrollPercent < 0.8) {
+                const strips = document.querySelectorAll('.color-strip');
+                strips.forEach((strip, index) => {
+                    const delay = Math.random() * 200;
+                    setTimeout(() => {
+                        strip.style.transform = `translateX(-90%) skewX(-15deg) scale(1.02)`;
+                        setTimeout(() => {
+                            strip.style.transform = `translateX(-100%) skewX(-15deg) scale(1)`;
+                        }, 300);
+                    }, delay);
+                });
+            }
+        }, 100);
+    });
+}
+
+// Initialize scroll effects on all pages
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initScrollColorEffects, 3000);
+});

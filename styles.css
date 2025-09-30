@@ -29,6 +29,13 @@
     --cream: #F5F5DC;
     --shadow-dark: rgba(0, 0, 0, 0.4);
     --shadow-light: rgba(0, 0, 0, 0.15);
+    
+    /* Color Transition Variables */
+    --color-1: #2E365Aff;
+    --color-2: #F8E61Dff;
+    --color-3: #0187B0ff;
+    --color-4: #F8E531ff;
+    --color-5: #2C2B27ff;
 }
 
 body {
@@ -1374,9 +1381,204 @@ body {
     }
 }
 
+/* Color Transition Strips */
+.color-transition-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.color-transition-container.active {
+    opacity: 1;
+}
+
+.color-strip {
+    position: absolute;
+    width: 120%;
+    height: 20%;
+    transform: translateX(-100%) skewX(-15deg);
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.color-strip.slide-in {
+    transform: translateX(0%) skewX(-15deg);
+}
+
+.color-strip.slide-out {
+    transform: translateX(100%) skewX(-15deg);
+}
+
+.strip-1 {
+    background: linear-gradient(135deg, var(--color-1), rgba(46, 54, 90, 0.9));
+    top: 0%;
+    animation-delay: 0s;
+}
+
+.strip-2 {
+    background: linear-gradient(135deg, var(--color-2), rgba(248, 230, 29, 0.9));
+    top: 20%;
+    animation-delay: 0.1s;
+}
+
+.strip-3 {
+    background: linear-gradient(135deg, var(--color-3), rgba(1, 135, 176, 0.9));
+    top: 40%;
+    animation-delay: 0.2s;
+}
+
+.strip-4 {
+    background: linear-gradient(135deg, var(--color-4), rgba(248, 229, 49, 0.9));
+    top: 60%;
+    animation-delay: 0.3s;
+}
+
+.strip-5 {
+    background: linear-gradient(135deg, var(--color-5), rgba(44, 43, 39, 0.9));
+    top: 80%;
+    animation-delay: 0.4s;
+}
+
+/* Animation for automatic color strip transitions */
+@keyframes colorStripCycle {
+    0%, 15% {
+        transform: translateX(-100%) skewX(-15deg);
+        opacity: 0;
+    }
+    20%, 35% {
+        transform: translateX(0%) skewX(-15deg);
+        opacity: 1;
+    }
+    40%, 100% {
+        transform: translateX(100%) skewX(-15deg);
+        opacity: 0;
+    }
+}
+
+.color-strip.auto-cycle {
+    animation: colorStripCycle 20s infinite;
+}
+
+.strip-1.auto-cycle { animation-delay: 0s; }
+.strip-2.auto-cycle { animation-delay: 4s; }
+.strip-3.auto-cycle { animation-delay: 8s; }
+.strip-4.auto-cycle { animation-delay: 12s; }
+.strip-5.auto-cycle { animation-delay: 16s; }
+
+/* Page Loading Color Effect */
+@keyframes pageColorLoad {
+    0% { 
+        background-position: -200% 0;
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.1;
+    }
+    100% { 
+        background-position: 200% 0;
+        opacity: 0;
+    }
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;  
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        transparent 20%,
+        rgba(46, 54, 90, 0.1) 25%,
+        rgba(248, 230, 29, 0.1) 35%,
+        rgba(1, 135, 176, 0.1) 45%,
+        rgba(248, 229, 49, 0.1) 55%,
+        rgba(44, 43, 39, 0.1) 65%,
+        transparent 80%);
+    background-size: 400% 100%;
+    pointer-events: none;
+    z-index: 0;
+    animation: pageColorLoad 8s ease-in-out infinite;
+}
+
+/* Enhanced hover effects with color transitions */
+.commander-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 10px 30px rgba(248, 230, 29, 0.3),
+        0 0 0 3px var(--aureolin),
+        0 0 20px rgba(248, 230, 29, 0.5);
+    background: rgba(245, 245, 220, 0.15);
+}
+
+.commander-card:hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--color-1), 
+        var(--color-2), 
+        var(--color-3), 
+        var(--color-4), 
+        var(--color-5));
+    border-radius: 20px;
+    z-index: -1;
+    opacity: 0.3;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Typing cursor with color transition */
+.typing-cursor {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--color-2), var(--color-4));
+    width: 3px;
+    animation: blink 1s infinite, colorPulse 2s ease-in-out infinite;
+    margin-left: 2px;
+}
+
+@keyframes colorPulse {
+    0%, 100% { 
+        background: linear-gradient(45deg, var(--color-2), var(--color-4));
+        box-shadow: 0 0 10px rgba(248, 230, 29, 0.5);
+    }
+    50% { 
+        background: linear-gradient(45deg, var(--color-3), var(--color-1));
+        box-shadow: 0 0 10px rgba(1, 135, 176, 0.5);
+    }
+}
+
+/* Page transition effect */
+body.page-transition {
+    overflow: hidden;
+}
+
+.page-transition .color-transition-container {
+    opacity: 1;
+}
+
 /* Print styles for official documentation */
 @media print {
     .floating-back-btn {
+        display: none !important;
+    }
+    
+    .color-transition-container {
         display: none !important;
     }
     
