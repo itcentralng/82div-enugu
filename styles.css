@@ -559,43 +559,109 @@ main {
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><path d="M40,0 L0,0 L0,20 L20,20 L20,40 L40,40 Z" fill="none" stroke="%23F8E61D" stroke-width="2" opacity="0.6"/></svg>');
 }
 
-.history-section h1 {
-    color: var(--cream);
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 40px;
+/* History Header Styling */
+.history-header {
     text-align: center;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    margin-bottom: 50px;
     position: relative;
 }
 
-.history-section h1::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--aureolin), transparent);
+.history-header h1 {
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 
+        2px 2px 8px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(248, 230, 29, 0.3);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.history-section h2 {
+.history-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--aureolin), transparent);
+    border-radius: 2px;
+}
+
+.history-header .subtitle {
     color: var(--aureolin);
     font-family: 'Oswald', sans-serif;
     font-size: 1.8rem;
-    font-weight: 500;
-    margin: 40px 0 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid rgba(248, 230, 29, 0.6);
+    font-weight: 600;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.history-header .subtitle::before {
+    content: '✦';
+    color: var(--blue-ncs);
+    margin-right: 15px;
+    font-size: 1.2em;
+    text-shadow: 0 0 10px rgba(1, 135, 176, 0.6);
+}
+
+.history-header .subtitle::after {
+    content: '✦';
+    color: var(--blue-ncs);
+    margin-left: 15px;
+    font-size: 1.2em;
+    text-shadow: 0 0 10px rgba(1, 135, 176, 0.6);
+}
+
+/* History Section Cards */
+.history-section-card {
+    background: rgba(46, 54, 90, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 40px 35px;
+    margin-bottom: 30px;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.2),
+        0 8px 25px rgba(248, 230, 29, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(248, 230, 29, 0.2);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.history-section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.3),
+        0 15px 35px rgba(248, 230, 29, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: rgba(46, 54, 90, 0.15);
+}
+
+.history-section-card h2 {
+    color: var(--aureolin);
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0 0 25px 0;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(248, 230, 29, 0.4);
     position: relative;
     text-transform: uppercase;
     letter-spacing: 1px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.history-section h2::before {
+.history-section-card h2::before {
     content: '';
     position: absolute;
     bottom: -3px;
@@ -603,15 +669,74 @@ main {
     width: 60px;
     height: 3px;
     background: var(--blue-ncs);
+    border-radius: 2px;
 }
 
-.history-content p {
+.history-section-card p {
     font-size: 1.2rem;
     line-height: 1.8;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     text-align: justify;
     color: var(--cream);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Crimson Text', serif;
+}
+
+.history-section-card:last-child {
+    margin-bottom: 0;
+}
+
+/* Dragon Values Styling */
+.dragon-values {
+    margin-top: 25px;
+}
+
+.dragon-values ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dragon-values li {
+    background: rgba(248, 230, 29, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--aureolin);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.dragon-values li:hover {
+    transform: translateX(10px);
+    background: rgba(248, 230, 29, 0.15);
+    border-left-color: var(--light-aureolin);
+    box-shadow: 
+        0 12px 30px rgba(0, 0, 0, 0.25),
+        0 4px 15px rgba(248, 230, 29, 0.2);
+}
+
+.dragon-values li strong {
+    color: var(--aureolin);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.dragon-values li:last-child {
+    margin-bottom: 0;
+}
+
+/* History content general styling */
+.history-content {
+    position: relative;
 }
 
 /* Biography section */
@@ -1248,8 +1373,39 @@ main {
         border-radius: 20px;
     }
     
-    .history-section h1 {
-        font-size: 2.2rem;
+    /* History page responsive styles */
+    .history-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .history-header .subtitle {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+    }
+    
+    .history-section-card {
+        padding: 30px 25px;
+        margin-bottom: 25px;
+    }
+    
+    .history-section-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .history-section-card p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+    
+    .dragon-values li {
+        padding: 15px 20px;
+        margin-bottom: 12px;
+    }
+    
+    .dragon-values li::before {
+        font-size: 1.2em;
     }
     
     .logo {
@@ -1330,8 +1486,60 @@ main {
         padding: 30px 20px;
     }
     
-    .history-section h1 {
-        font-size: 1.8rem;
+    /* Mobile history page styles */
+    .history-header {
+        margin-bottom: 40px;
+    }
+    
+    .history-header h1 {
+        font-size: 2rem;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
+    
+    .history-header .subtitle {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+    
+    .history-header .subtitle::before,
+    .history-header .subtitle::after {
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 1em;
+    }
+    
+    .history-section-card {
+        padding: 25px 20px;
+        margin-bottom: 20px;
+        border-radius: 15px;
+    }
+    
+    .history-section-card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        letter-spacing: 0.5px;
+    }
+    
+    .history-section-card p {
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: left;
+    }
+    
+    .dragon-values li {
+        padding: 12px 15px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+    
+    .dragon-values li::before {
+        font-size: 1em;
+        left: -3px;
+    }
+    
+    .dragon-values li:hover {
+        transform: translateX(5px);
     }
     
     .history-content p,
