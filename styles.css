@@ -192,22 +192,31 @@ header::before {
     transform: rotate(45deg) translate(50%, 50%);
 }
 
+.history-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
 .history-link {
     color: var(--aureolin);
     font-family: 'Oswald', sans-serif;
-    font-size: 22px;
-    font-weight: 500;
-    margin-top: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     position: relative;
     display: inline-block;
-    padding: 8px 20px;
-    border: 2px solid transparent;
+    padding: 12px 30px;
+    border: 3px solid transparent;
     background: linear-gradient(var(--delft-blue), var(--delft-blue)) padding-box,
                 linear-gradient(45deg, var(--aureolin), var(--aureolin-2)) border-box;
+    border-radius: 8px;
 }
 
 .history-link::before {
@@ -1414,8 +1423,9 @@ main {
     }
     
     .history-link {
-        font-size: 18px;
-        padding: 6px 16px;
+        font-size: 24px;
+        padding: 10px 25px;
+        letter-spacing: 2px;
     }
 }
 
@@ -1440,9 +1450,9 @@ main {
     }
     
     .history-link {
-        font-size: 16px;
-        padding: 5px 12px;
-        letter-spacing: 1px;
+        font-size: 20px;
+        padding: 8px 20px;
+        letter-spacing: 2px;
     }
     
     .logo-container {
