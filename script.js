@@ -564,7 +564,7 @@ function createPlaceholderImage() {
 
 // Typing animation function for home page
 function startTypingAnimation() {
-    const textToType = "Chronicle of Commanders";
+    const textToType = "CHRONICLE OF COMMANDERS";
     const typedTextElement = document.getElementById('typedText');
     const cursorElement = document.getElementById('typingCursor');
     
