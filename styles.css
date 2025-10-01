@@ -2066,9 +2066,10 @@ body::after {
 
 .mascot-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
     margin-top: 30px;
+    justify-items: center;
 }
 
 .mascot-image-container {
@@ -2085,7 +2086,7 @@ body::after {
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(248, 230, 29, 0.2);
     cursor: pointer;
-    aspect-ratio: 16/10;
+    aspect-ratio: 3/4;
 }
 
 .mascot-image-container:hover {
@@ -2147,7 +2148,7 @@ body::after {
 /* Mascot Gallery Responsive Design */
 @media (max-width: 768px) {
     .mascot-gallery {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
     }
     
@@ -2192,7 +2193,7 @@ body::after {
     }
     
     .mascot-image-container {
-        aspect-ratio: 16/9;
+        aspect-ratio: 3/4;
     }
     
     .overlay-text {
