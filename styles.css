@@ -203,7 +203,7 @@ header::before {
 .history-link {
     color: var(--aureolin);
     font-family: 'Oswald', sans-serif;
-    font-size: 28px;
+    font-size: 3.5rem;
     font-weight: 600;
     margin: 0;
     cursor: pointer;
@@ -1431,7 +1431,7 @@ main {
     }
     
     .history-link {
-        font-size: 24px;
+        font-size: 2.5rem;
         padding: 10px 25px;
         letter-spacing: 2px;
     }
@@ -1458,7 +1458,7 @@ main {
     }
     
     .history-link {
-        font-size: 20px;
+        font-size: 2rem;
         padding: 8px 20px;
         letter-spacing: 2px;
     }
