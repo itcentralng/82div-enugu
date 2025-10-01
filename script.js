@@ -678,4 +678,210 @@ function initScrollColorEffects() {
 // Initialize scroll effects on all pages
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(initScrollColorEffects, 3000);
+    
+    // Initialize mascot gallery if on history page
+    if (window.location.pathname.includes('history.html')) {
+        initializeMascotGallery();
+    }
 });
+
+// Mascot Gallery Data
+const mascotImages = [
+    {
+        src: 'images/mascot/1002444049.jpg',
+        title: 'Fire Spitting Dragon',
+        description: 'The legendary mascot of the 82 Division, embodying strength, courage, and the firepower that defines our unit.'
+    },
+    {
+        src: 'images/mascot/1002444050.jpg',
+        title: 'Symbol of Strength',
+        description: 'Representing the unwavering resolve and military prowess of the 82 Division Nigerian Army.'
+    },
+    {
+        src: 'images/mascot/1002444051.jpg',
+        title: 'Embodiment of Courage',
+        description: 'Inspiring soldiers to face challenges with valor and determination in service of the nation.'
+    },
+    {
+        src: 'images/mascot/1002444061.jpg',
+        title: 'Guardian of the Nation',
+        description: 'Standing as a testament to the Division\'s unwavering commitment to Nigeria\'s safety and well-being.'
+    }
+];
+
+let currentImageIndex = 0;
+
+// Initialize Mascot Gallery
+function initializeMascotGallery() {
+    const mascotImageContainers = document.querySelectorAll('.mascot-image-container');
+    
+    mascotImageContainers.forEach((container, index) => {
+        container.addEventListener('click', () => {
+            openModal(index);
+        });
+        
+        // Add hover effects
+        container.addEventListener('mouseenter', function() {
+            triggerHoverColorEffect(this);
+        });
+    });
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', handleKeyboardNavigation);
+}
+
+// Open Modal with Image
+function openModal(imageIndex) {
+    currentImageIndex = imageIndex;
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    
+    if (!modal || !modalImage || !modalTitle || !modalDescription) return;
+    
+    // Set image data
+    const imageData = mascotImages[imageIndex];
+    modalImage.src = imageData.src;
+    modalImage.alt = imageData.title;
+    modalTitle.textContent = imageData.title;
+    modalDescription.textContent = imageData.description;
+    
+    // Show modal with animation
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
+    // Trigger animation
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+    
+    // Trigger color transition effect
+    triggerModalColorEffect();
+}
+
+// Close Modal
+function closeModal() {
+    const modal = document.getElementById('imageModal');
+    if (!modal) return;
+    
+    modal.classList.add('hide');
+    modal.classList.remove('show');
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('hide');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }, 300);
+}
+
+// Navigate to Previous Image
+function previousImage() {
+    currentImageIndex = (currentImageIndex - 1 + mascotImages.length) % mascotImages.length;
+    updateModalImage();
+}
+
+// Navigate to Next Image
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % mascotImages.length;
+    updateModalImage();
+}
+
+// Update Modal Image
+function updateModalImage() {
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    
+    if (!modalImage || !modalTitle || !modalDescription) return;
+    
+    const imageData = mascotImages[currentImageIndex];
+    
+    // Add transition effect
+    modalImage.style.opacity = '0';
+    modalImage.style.transform = 'scale(0.95)';
+    
+    setTimeout(() => {
+        modalImage.src = imageData.src;
+        modalImage.alt = imageData.title;
+        modalTitle.textContent = imageData.title;
+        modalDescription.textContent = imageData.description;
+        
+        modalImage.style.opacity = '1';
+        modalImage.style.transform = 'scale(1)';
+    }, 150);
+    
+    // Trigger color effect
+    triggerModalColorEffect();
+}
+
+// Handle Keyboard Navigation
+function handleKeyboardNavigation(event) {
+    const modal = document.getElementById('imageModal');
+    if (!modal || !modal.classList.contains('show')) return;
+    
+    switch(event.key) {
+        case 'Escape':
+            closeModal();
+            break;
+        case 'ArrowLeft':
+            previousImage();
+            break;
+        case 'ArrowRight':
+            nextImage();
+            break;
+    }
+}
+
+// Trigger Modal Color Effect
+function triggerModalColorEffect() {
+    const modal = document.getElementById('imageModal');
+    if (!modal) return;
+    
+    // Create a color pulse effect
+    const colorPulse = document.createElement('div');
+    colorPulse.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, 
+            rgba(248, 230, 29, 0.1) 0%, 
+            rgba(1, 135, 176, 0.05) 30%, 
+            transparent 70%);
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0;
+        animation: colorPulse 1s ease-out;
+    `;
+    
+    modal.appendChild(colorPulse);
+    
+    // Remove after animation
+    setTimeout(() => {
+        if (colorPulse.parentNode) {
+            colorPulse.parentNode.removeChild(colorPulse);
+        }
+    }, 1000);
+}
+
+// Add CSS animation for color pulse
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes colorPulse {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(1.2);
+        }
+    }
+`;
+document.head.appendChild(style);
