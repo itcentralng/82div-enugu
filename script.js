@@ -4,7 +4,7 @@ const commanders = [
         id: 1,
         name: "LATE BRIG GEN GGA ALLY (N/276) RETIRED",
         image: "images/ally.jpg",
-        yearOfService: "1973",
+        yearOfService: "1973-1975",
         biography: "Late Brig Gen Godwin Gregory Aja Ally (Retired) was born on 2 Jan 40 in Okorotung and hails from Obudu Local Government Area of Cross River State. He attended the Mons Officer Cadet School Aldershot, UK and was later transferred to Royal Military Academy Sandhurst (RMAS) as a member of Commissioning Course 62. He was granted Regular Combatant Commission from RMAS into the Nigerian Army Corps of Supply and Transport on 4 Aug 62. He was appointed Commander Lagos Garrison Organisation (Defunct) on 15 Dec 73. Late Brig Gen Godwin Gregory Aja Ally (Retired) was highly recognised and honoured for his exemplary leadership, professionalism and significant contributions to both Nigerian Army and the nation at large."
     },
     {
@@ -313,8 +313,7 @@ function initializeHomePage() {
         });
     }
     
-    // Start typing animation
-    startTypingAnimation();
+    // Typing animation removed - using static text now
     
     // Populate commanders grid
     if (commandersGrid) {
@@ -562,44 +561,7 @@ function createPlaceholderImage() {
     return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjQ0NDIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+UGhvdG88L3RleHQ+Cjwvc3ZnPgo=';
 }
 
-// Typing animation function for home page
-function startTypingAnimation() {
-    const textToType = "CHRONICLE OF COMMANDERS";
-    const typedTextElement = document.getElementById('typedText');
-    const cursorElement = document.getElementById('typingCursor');
-    
-    if (!typedTextElement || !cursorElement) return;
-    
-    let currentIndex = 0;
-    let isDeleting = false;
-    
-    function typeCharacter() {
-        if (!isDeleting && currentIndex < textToType.length) {
-            // Typing forward
-            typedTextElement.textContent = textToType.substring(0, currentIndex + 1);
-            currentIndex++;
-            setTimeout(typeCharacter, 100); // 100ms between characters when typing
-        } else if (!isDeleting && currentIndex === textToType.length) {
-            // Finished typing, wait before starting to delete
-            setTimeout(() => {
-                isDeleting = true;
-                typeCharacter();
-            }, 10000); // Wait 10 seconds before deleting
-        } else if (isDeleting && currentIndex > 0) {
-            // Deleting backward
-            currentIndex--;
-            typedTextElement.textContent = textToType.substring(0, currentIndex);
-            setTimeout(typeCharacter, 50); // 50ms between characters when deleting (faster)
-        } else if (isDeleting && currentIndex === 0) {
-            // Finished deleting, wait before starting to type again
-            isDeleting = false;
-            setTimeout(typeCharacter, 2500); // Wait 2.5 seconds before typing again
-        }
-    }
-    
-    // Start the typing animation after a brief delay
-    setTimeout(typeCharacter, 1000);
-}
+// Typing animation function removed - now using static text
 
 // Biography typing animation function
 function startBiographyTyping(text, textElement, cursorElement) {
