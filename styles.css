@@ -112,12 +112,12 @@ header {
     /* -webkit-backdrop-filter: blur(20px); */
     padding: 40px 0;
     position: relative;
-    box-shadow: 
+    /* box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1),
         inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     border-bottom: 1px solid rgba(248, 230, 29, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
 header::before {
@@ -375,7 +375,9 @@ main {
     position: relative;
     line-height: 1.2;
     min-height: 80px;
-    white-space: nowrap;
+    white-space: normal;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 /* Typing animation styles */
