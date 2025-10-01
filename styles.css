@@ -149,8 +149,8 @@ header::before {
 }
 
 .logo {
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 50%;
@@ -1426,8 +1426,8 @@ main {
     }
     
     .logo {
-        width: 100px;
-        height: 100px;
+        width: 130px;
+        height: 130px;
     }
     
     .history-link {
@@ -1453,8 +1453,8 @@ main {
     }
     
     .logo {
-        width: 80px;
-        height: 80px;
+        width: 105px;
+        height: 105px;
     }
     
     .history-link {
@@ -1672,8 +1672,8 @@ header {
     }
     
     .logo {
-        width: 160px;
-        height: 160px;
+        width: 200px;
+        height: 200px;
     }
 }
 
