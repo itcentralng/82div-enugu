@@ -296,18 +296,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize home page
 function initializeHomePage() {
-    // Add event listener for history link
-    if (historyLink) {
-        historyLink.addEventListener('click', goToHistoryWithTransition);
-        historyLink.addEventListener('mouseenter', function() {
+    // Add event listener for header card (replaces separate logo and history listeners)
+    const headerCard = document.querySelector('.header-card');
+    if (headerCard) {
+        headerCard.addEventListener('click', goToHistoryWithTransition);
+        headerCard.addEventListener('mouseenter', function() {
             triggerHoverColorEffect(this);
         });
     }
     
-    // Add event listener for logo click
+    // Keep logo click for backward compatibility (if someone clicks just the logo)
     const logo = document.getElementById('logo');
     if (logo) {
-        logo.addEventListener('click', goHomeWithTransition);
+        logo.addEventListener('click', goToHistoryWithTransition);
         logo.addEventListener('mouseenter', function() {
             triggerHoverColorEffect(this);
         });
