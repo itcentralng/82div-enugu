@@ -298,6 +298,7 @@ main {
     position: relative;
     line-height: 1.2;
     min-height: 80px;
+    white-space: nowrap;
 }
 
 /* Typing animation styles */
