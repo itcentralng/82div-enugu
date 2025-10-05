@@ -46,6 +46,16 @@ body {
     position: relative;
     overflow-x: hidden;
     background: transparent;
+    animation: pageLoad 0.8s ease-out;
+}
+
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 /* Video Background */
@@ -853,32 +863,34 @@ main {
 
 /* Biography section */
 .biography-section {
-    background: rgba(245, 245, 220, 0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 25px;
-    padding: 96px 84px;
+    background: rgba(245, 245, 220, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 30px;
+    padding: 80px 100px;
     box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.2),
-        0 10px 25px rgba(248, 230, 29, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(248, 230, 29, 0.3);
+        0 30px 60px rgba(0, 0, 0, 0.35),
+        0 15px 40px rgba(248, 230, 29, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(248, 230, 29, 0.35);
     position: relative;
     overflow: hidden;
+    max-width: 2800px;
+    margin: 0 auto;
 }
 
 /* New Biography Layout */
 .biography-layout {
     display: flex;
-    gap: 96px;
+    gap: 120px;
     align-items: flex-start;
-    min-height: 1020px;
+    min-height: 900px;
     justify-content: center;
-    max-width: 2640px;
+    max-width: 2600px;
     margin: 0 auto;
     opacity: 0;
-    animation: fadeInUp 1s ease-out 0.3s forwards;
+    animation: fadeInUp 1.2s ease-out 0.2s forwards;
 }
 
 @keyframes fadeInUp {
@@ -894,39 +906,41 @@ main {
 
 /* Portrait Container */
 .portrait-container {
-    flex: 0 0 660px;
+    flex: 0 0 700px;
     display: flex;
     justify-content: center;
     align-self: flex-start;
     position: sticky;
-    top: 40px;
+    top: 60px;
+    z-index: 10;
 }
 
 .portrait-frame {
     position: relative;
-    width: 660px;
-    height: 816px;
-    background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
-    border-radius: 20px;
-    padding: 22px;
+    width: 700px;
+    height: 880px;
+    background: linear-gradient(145deg, #f5f5f5, #e8e8e8);
+    border-radius: 25px;
+    padding: 25px;
     box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.4),
-        0 10px 30px rgba(248, 230, 29, 0.3),
-        inset 0 2px 4px rgba(255, 255, 255, 0.6),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-    border: 7px solid var(--aureolin);
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 15px 40px rgba(248, 230, 29, 0.35),
+        inset 0 3px 6px rgba(255, 255, 255, 0.7),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.15);
+    border: 8px solid var(--aureolin);
     overflow: hidden;
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portrait-frame:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.01);
     box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.5),
-        0 15px 40px rgba(248, 230, 29, 0.4),
-        0 0 0 2px var(--light-aureolin),
-        inset 0 2px 4px rgba(255, 255, 255, 0.7),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+        0 40px 80px rgba(0, 0, 0, 0.55),
+        0 20px 50px rgba(248, 230, 29, 0.45),
+        0 0 0 3px var(--light-aureolin),
+        0 0 30px rgba(248, 230, 29, 0.6),
+        inset 0 3px 6px rgba(255, 255, 255, 0.8),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .portrait-frame::before {
@@ -992,6 +1006,19 @@ main {
         0 10px 25px rgba(0, 0, 0, 0.4),
         inset 0 1px 2px rgba(255, 255, 255, 0.2);
     filter: brightness(0.95) contrast(1.05);
+    opacity: 0;
+    animation: portraitFadeIn 1s ease-out 0.5s forwards;
+}
+
+@keyframes portraitFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .portrait-frame:hover .commander-portrait {
@@ -1007,30 +1034,45 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    max-width: 1440px;
+    gap: 35px;
+    max-width: 1500px;
     min-width: 0;
+    padding-right: 20px;
 }
 
 .biography-header {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    animation: slideInDown 0.8s ease-out 0.5s backwards;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .commander-title {
     color: var(--cream);
     font-family: 'Playfair Display', serif;
-    font-size: 4.2rem;
+    font-size: 3.8rem;
     font-weight: 700;
-    margin-bottom: 22px;
-    line-height: 1.2;
+    margin-bottom: 25px;
+    line-height: 1.3;
     text-shadow: 
-        2px 2px 8px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(248, 230, 29, 0.3);
+        3px 3px 10px rgba(0, 0, 0, 0.9),
+        0 0 25px rgba(248, 230, 29, 0.4),
+        0 0 40px rgba(248, 230, 29, 0.2);
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     position: relative;
-    padding-bottom: 22px;
+    padding-bottom: 25px;
+    word-spacing: 0.2em;
 }
 
 .commander-title::after {
@@ -1039,71 +1081,131 @@ main {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 150px;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--aureolin), transparent);
-    border-radius: 2px;
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--blue-ncs) 15%,
+        var(--aureolin) 50%,
+        var(--blue-ncs) 85%,
+        transparent);
+    border-radius: 3px;
+    box-shadow: 0 0 15px rgba(248, 230, 29, 0.6);
+    animation: titleLineGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleLineGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(248, 230, 29, 0.6);
+        opacity: 1;
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(248, 230, 29, 0.8);
+        opacity: 0.9;
+    }
 }
 
 .commander-service-period {
     font-family: 'Oswald', sans-serif;
-    font-size: 2.04rem;
+    font-size: 1.9rem;
     color: var(--aureolin);
     font-weight: 600;
     margin: 0;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.5),
-        0 0 15px rgba(248, 230, 29, 0.4);
+        0 3px 6px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(248, 230, 29, 0.5);
     text-align: center;
+    padding: 12px 30px;
+    background: rgba(248, 230, 29, 0.08);
+    border-radius: 50px;
+    border: 1px solid rgba(248, 230, 29, 0.25);
+    display: inline-block;
+    animation: serviceGlow 4s ease-in-out infinite;
+}
+
+@keyframes serviceGlow {
+    0%, 100% {
+        border-color: rgba(248, 230, 29, 0.25);
+        box-shadow: 0 0 0 rgba(248, 230, 29, 0);
+    }
+    50% {
+        border-color: rgba(248, 230, 29, 0.45);
+        box-shadow: 0 0 20px rgba(248, 230, 29, 0.3);
+    }
 }
 
 .biography-text-box {
-    background: rgba(46, 54, 90, 0.15);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 66px;
+    background: rgba(46, 54, 90, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 70px 80px;
     box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 8px 25px rgba(248, 230, 29, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(248, 230, 29, 0.3);
+        0 25px 50px rgba(0, 0, 0, 0.35),
+        0 10px 30px rgba(248, 230, 29, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.25),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(248, 230, 29, 0.35);
     position: relative;
     overflow: hidden;
-    min-height: 600px;
-    max-height: 900px;
+    min-height: 650px;
+    max-height: 750px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(248, 230, 29, 0.6) rgba(46, 54, 90, 0.3);
+    scrollbar-color: rgba(248, 230, 29, 0.7) rgba(46, 54, 90, 0.4);
+    animation: textBoxSlideIn 0.8s ease-out 0.8s backwards;
+}
+
+@keyframes textBoxSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .biography-text-box::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
 }
 
 .biography-text-box::-webkit-scrollbar-track {
-    background: rgba(46, 54, 90, 0.3);
-    border-radius: 10px;
-    margin: 10px 0;
+    background: rgba(46, 54, 90, 0.4);
+    border-radius: 12px;
+    margin: 15px 0;
+    border: 1px solid rgba(248, 230, 29, 0.1);
 }
 
 .biography-text-box::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--aureolin), var(--aureolin-2));
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(248, 230, 29, 0.5);
+    background: linear-gradient(180deg, 
+        var(--aureolin) 0%,
+        var(--light-aureolin) 50%,
+        var(--aureolin-2) 100%);
+    border-radius: 12px;
+    box-shadow: 
+        0 0 15px rgba(248, 230, 29, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
+    border: 1px solid rgba(248, 230, 29, 0.3);
 }
 
 .biography-text-box::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, var(--light-aureolin), var(--aureolin));
-    box-shadow: 0 0 15px rgba(248, 230, 29, 0.7);
+    background: linear-gradient(180deg, 
+        var(--light-aureolin) 0%,
+        var(--aureolin) 50%,
+        var(--aureolin-2) 100%);
+    box-shadow: 
+        0 0 20px rgba(248, 230, 29, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transform: scaleX(1.2);
 }
 
 .biography-text-box.typing-active {
@@ -1155,13 +1257,14 @@ main {
 }
 
 .biography-text-box:hover {
-    background: rgba(46, 54, 90, 0.2);
+    background: rgba(46, 54, 90, 0.18);
     box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.35),
-        0 10px 30px rgba(248, 230, 29, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-    border-color: rgba(248, 230, 29, 0.4);
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 15px 35px rgba(248, 230, 29, 0.25),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+    border-color: rgba(248, 230, 29, 0.45);
+    transform: translateY(-2px);
 }
 
 .biography-text-box::before {
@@ -1170,16 +1273,30 @@ main {
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 5px;
     background: linear-gradient(90deg, 
         transparent,
-        var(--aureolin) 15%, 
-        var(--blue-ncs) 50%, 
-        var(--aureolin-2) 85%,
+        var(--blue-ncs) 10%,
+        var(--aureolin) 25%, 
+        var(--light-aureolin) 50%, 
+        var(--aureolin-2) 75%,
+        var(--blue-ncs) 90%,
         transparent);
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 0 15px rgba(248, 230, 29, 0.5);
+    border-radius: 25px 25px 0 0;
+    box-shadow: 0 0 20px rgba(248, 230, 29, 0.6);
     z-index: 1;
+    animation: topBarShimmer 4s ease-in-out infinite;
+}
+
+@keyframes topBarShimmer {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(248, 230, 29, 0.6);
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 30px rgba(248, 230, 29, 0.8);
+    }
 }
 
 /* Add subtle texture pattern */
@@ -1201,10 +1318,12 @@ main {
 }
 
 .typing-text {
-    font-size: 1.8rem;
-    line-height: 2.4;
+    font-size: 1.65rem;
+    line-height: 2.2;
     color: var(--cream);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.7),
+        0 1px 2px rgba(0, 0, 0, 0.5);
     text-align: justify;
     margin: 0;
     font-family: 'Crimson Text', serif;
@@ -1215,23 +1334,29 @@ main {
     hyphens: auto;
     white-space: pre-wrap;
     max-width: 100%;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
+    word-spacing: 0.05em;
 }
 
 /* Typing animation styles */
 .typing-cursor {
     display: inline;
-    background: linear-gradient(135deg, var(--aureolin), var(--light-aureolin));
+    background: linear-gradient(135deg, 
+        var(--aureolin) 0%,
+        var(--light-aureolin) 50%,
+        var(--aureolin) 100%);
     color: transparent;
-    animation: blink 0.8s infinite, cursorPulse 2s ease-in-out infinite;
+    animation: blink 0.7s infinite, cursorPulse 2.5s ease-in-out infinite;
     font-weight: bold;
-    text-shadow: 0 0 15px rgba(248, 230, 29, 0.9);
-    margin-left: 3px;
-    padding: 0 3px;
-    border-radius: 3px;
+    text-shadow: 
+        0 0 20px rgba(248, 230, 29, 0.95),
+        0 0 10px rgba(248, 230, 29, 0.7);
+    margin-left: 4px;
+    padding: 0 4px;
+    border-radius: 4px;
     box-shadow: 
-        0 0 10px rgba(248, 230, 29, 0.6),
-        0 0 20px rgba(248, 230, 29, 0.3);
+        0 0 15px rgba(248, 230, 29, 0.7),
+        0 0 25px rgba(248, 230, 29, 0.4);
 }
 
 @keyframes blink {
@@ -1242,11 +1367,15 @@ main {
 @keyframes cursorPulse {
     0%, 100% { 
         transform: scale(1);
-        box-shadow: 0 0 10px rgba(248, 230, 29, 0.6);
+        box-shadow: 
+            0 0 15px rgba(248, 230, 29, 0.7),
+            0 0 25px rgba(248, 230, 29, 0.4);
     }
     50% { 
-        transform: scale(1.1);
-        box-shadow: 0 0 20px rgba(248, 230, 29, 0.8);
+        transform: scale(1.15);
+        box-shadow: 
+            0 0 25px rgba(248, 230, 29, 0.9),
+            0 0 35px rgba(248, 230, 29, 0.6);
     }
 }
 
@@ -1266,6 +1395,273 @@ main {
         width: 100%;
         border-right: none;
     }
+}
+
+.biography-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--aureolin) 20%, 
+        var(--blue-ncs) 50%,
+        var(--aureolin-2) 80%,
+        transparent);
+    border-radius: 25px 25px 0 0;
+}
+
+/* Portrait shine effect */
+.portrait-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        transparent 45%,
+        rgba(255, 255, 255, 0.3) 48%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.3) 52%,
+        transparent 55%,
+        transparent 100%
+    );
+    transform: rotate(45deg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portrait-frame:hover .portrait-shine {
+    opacity: 1;
+    animation: portraitShine 2s ease-in-out;
+}
+
+@keyframes portraitShine {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+/* Portrait label */
+.portrait-label {
+    margin-top: 25px;
+    text-align: center;
+    opacity: 0;
+    animation: labelFadeIn 0.8s ease-out 1.2s forwards;
+}
+
+@keyframes labelFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.label-text {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--aureolin);
+    letter-spacing: 3px;
+    padding: 10px 25px;
+    background: rgba(248, 230, 29, 0.1);
+    border: 1px solid rgba(248, 230, 29, 0.3);
+    border-radius: 25px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.portrait-label:hover .label-text {
+    background: rgba(248, 230, 29, 0.15);
+    border-color: rgba(248, 230, 29, 0.4);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(248, 230, 29, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Service period wrapper */
+.service-period-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+    animation: slideInRight 0.8s ease-out 0.6s backwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Text box header */
+.text-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(248, 230, 29, 0.3);
+    position: relative;
+}
+
+.text-box-header::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--blue-ncs),
+        transparent);
+    border-radius: 2px;
+}
+
+.header-icon {
+    font-size: 1.4rem;
+    filter: grayscale(0.3) brightness(1.2);
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.header-icon:first-child {
+    animation-delay: 0s;
+}
+
+.header-icon:last-child {
+    animation-delay: 1.5s;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-3px) rotate(5deg);
+    }
+}
+
+.header-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--aureolin);
+    letter-spacing: 3px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Reading Progress Bar */
+.reading-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 0%;
+    background: linear-gradient(90deg,
+        var(--blue-ncs),
+        var(--aureolin),
+        var(--aureolin-2),
+        var(--blue-ncs));
+    border-radius: 30px 0 0 0;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 15px rgba(248, 230, 29, 0.6);
+    z-index: 100;
+    animation: progressGlow 2s ease-in-out infinite;
+}
+
+@keyframes progressGlow {
+    0%, 100% {
+        box-shadow: 0 0 15px rgba(248, 230, 29, 0.6);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(248, 230, 29, 0.8);
+    }
+}
+
+/* Keyboard Hint */
+.keyboard-hint {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(46, 54, 90, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 12px 25px;
+    border-radius: 50px;
+    border: 1px solid rgba(248, 230, 29, 0.3);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        0 5px 15px rgba(248, 230, 29, 0.2);
+    opacity: 0;
+    animation: hintFadeIn 1s ease-out 2s forwards;
+    z-index: 100;
+}
+
+@keyframes hintFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    100% {
+        opacity: 0.9;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.keyboard-hint:hover {
+    opacity: 1;
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.5),
+        0 6px 20px rgba(248, 230, 29, 0.3);
+}
+
+.hint-text {
+    font-family: 'Crimson Text', serif;
+    font-size: 0.95rem;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.hint-text kbd {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--jet);
+    background: var(--aureolin);
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
 }
 
 .biography-section::before {
@@ -1652,40 +2048,50 @@ header {
     }
     
     /* Biography page optimizations for large screens */
+    .biography-section {
+        padding: 90px 120px;
+        max-width: 2900px;
+    }
+    
     .biography-layout {
-        max-width: 2000px;
-        gap: 80px;
+        max-width: 2700px;
+        gap: 140px;
+        min-height: 950px;
     }
     
     .portrait-container {
-        flex: 0 0 500px;
+        flex: 0 0 750px;
     }
     
     .portrait-frame {
-        width: 500px;
-        height: 620px;
+        width: 750px;
+        height: 940px;
+        padding: 28px;
+        border-width: 9px;
     }
     
     .biography-text-container {
-        max-width: 1200px;
+        max-width: 1600px;
     }
     
     .commander-title {
-        font-size: 3.2rem;
+        font-size: 4rem;
     }
     
     .commander-service-period {
-        font-size: 1.6rem;
+        font-size: 2rem;
+        padding: 14px 35px;
     }
     
     .typing-text {
-        font-size: 1.4rem;
-        line-height: 2;
+        font-size: 1.75rem;
+        line-height: 2.3;
     }
     
     .biography-text-box {
-        padding: 55px;
-        max-height: 650px;
+        padding: 80px 90px;
+        max-height: 800px;
+        min-height: 700px;
     }
 }
 
@@ -1717,40 +2123,83 @@ header {
     }
     
     /* Biography page for ultra-wide screens */
+    .biography-section {
+        padding: 100px 140px;
+        max-width: 3200px;
+    }
+    
     .biography-layout {
-        max-width: 2400px;
-        gap: 100px;
+        max-width: 3000px;
+        gap: 160px;
+        min-height: 1000px;
     }
     
     .portrait-container {
-        flex: 0 0 600px;
+        flex: 0 0 850px;
     }
     
     .portrait-frame {
-        width: 600px;
-        height: 750px;
+        width: 850px;
+        height: 1060px;
+        padding: 32px;
+        border-width: 10px;
     }
     
     .biography-text-container {
-        max-width: 1400px;
+        max-width: 1800px;
     }
     
     .commander-title {
-        font-size: 3.8rem;
+        font-size: 4.5rem;
+        padding-bottom: 30px;
+    }
+    
+    .commander-title::after {
+        width: 250px;
+        height: 5px;
     }
     
     .commander-service-period {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
+        padding: 16px 40px;
+        letter-spacing: 5px;
     }
     
     .typing-text {
-        font-size: 1.6rem;
-        line-height: 2.1;
+        font-size: 1.9rem;
+        line-height: 2.4;
+        letter-spacing: 0.5px;
     }
     
     .biography-text-box {
-        padding: 65px;
-        max-height: 750px;
+        padding: 90px 100px;
+        max-height: 900px;
+        min-height: 800px;
+        border-width: 3px;
+    }
+    
+    .biography-text-box::before {
+        height: 6px;
+    }
+    
+    .text-box-header {
+        margin-bottom: 35px;
+        padding-bottom: 25px;
+    }
+    
+    .header-text {
+        font-size: 1.5rem;
+        letter-spacing: 4px;
+    }
+    
+    .header-icon {
+        font-size: 1.6rem;
+    }
+    
+    .label-text {
+        font-size: 1.05rem;
+        padding: 12px 30px;
+        letter-spacing: 4px;
     }
     
     .floating-back-btn {
@@ -1763,6 +2212,18 @@ header {
     .floating-back-btn svg {
         width: 38px;
         height: 38px;
+    }
+    
+    .floating-logo {
+        width: 125px;
+        height: 125px;
+        top: 50px;
+        right: 50px;
+    }
+    
+    .floating-logo img {
+        width: 120px;
+        height: 120px;
     }
 }
 

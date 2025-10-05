@@ -345,6 +345,68 @@ function initializeBiographyPage() {
         // If no ID provided, show first commander by default
         displayBiography(1);
     }
+    
+    // Initialize reading progress bar
+    initializeReadingProgress();
+    
+    // Add keyboard shortcuts
+    initializeBiographyKeyboardShortcuts();
+}
+
+// Initialize reading progress bar
+function initializeReadingProgress() {
+    const textBox = document.querySelector('.biography-text-box');
+    const progressBar = document.querySelector('.reading-progress-bar');
+    
+    if (!textBox || !progressBar) return;
+    
+    textBox.addEventListener('scroll', function() {
+        const scrollTop = textBox.scrollTop;
+        const scrollHeight = textBox.scrollHeight - textBox.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        
+        progressBar.style.width = scrollPercentage + '%';
+    });
+}
+
+// Add keyboard shortcuts for biography page
+function initializeBiographyKeyboardShortcuts() {
+    document.addEventListener('keydown', function(event) {
+        // ESC key to go back
+        if (event.key === 'Escape') {
+            goHomeWithTransition();
+        }
+        
+        // Arrow keys for scrolling the biography text
+        const textBox = document.querySelector('.biography-text-box');
+        if (!textBox) return;
+        
+        if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            textBox.scrollBy({
+                top: 100,
+                behavior: 'smooth'
+            });
+        } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            textBox.scrollBy({
+                top: -100,
+                behavior: 'smooth'
+            });
+        } else if (event.key === 'Home') {
+            event.preventDefault();
+            textBox.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else if (event.key === 'End') {
+            event.preventDefault();
+            textBox.scrollTo({
+                top: textBox.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+    });
 }
 
 // Populate commanders grid
@@ -583,7 +645,7 @@ function startBiographyTyping(text, textElement, cursorElement) {
     }
     
     let currentIndex = 0;
-    const typingSpeed = 30; // Speed in milliseconds
+    const typingSpeed = 20; // Faster speed - 20ms instead of 30ms
     
     function typeCharacter() {
         if (currentIndex < text.length) {
@@ -595,11 +657,16 @@ function startBiographyTyping(text, textElement, cursorElement) {
             const currentChar = text[currentIndex - 1];
             
             if (currentChar === '.' || currentChar === '!' || currentChar === '?') {
-                delay = typingSpeed * 8; // Pause at sentence endings
+                delay = typingSpeed * 6; // Shorter pause at sentence endings
             } else if (currentChar === ',' || currentChar === ';' || currentChar === ':') {
-                delay = typingSpeed * 3; // Short pause at commas
+                delay = typingSpeed * 2.5; // Shorter pause at commas
             } else if (currentChar === ' ') {
-                delay = typingSpeed * 0.5; // Faster for spaces
+                delay = typingSpeed * 0.4; // Faster for spaces
+            }
+            
+            // Auto-scroll to keep text visible
+            if (textBox && textBox.scrollHeight > textBox.clientHeight) {
+                textBox.scrollTop = textBox.scrollHeight;
             }
             
             setTimeout(typeCharacter, delay);
@@ -608,6 +675,16 @@ function startBiographyTyping(text, textElement, cursorElement) {
             if (textBox) {
                 textBox.classList.remove('typing-active');
                 textBox.classList.add('typing-complete');
+                
+                // Smooth scroll to top after completion
+                setTimeout(() => {
+                    if (textBox.scrollTop > 0) {
+                        textBox.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 1000);
             }
             
             setTimeout(() => {
@@ -619,7 +696,7 @@ function startBiographyTyping(text, textElement, cursorElement) {
     }
     
     // Start typing after a brief delay
-    setTimeout(typeCharacter, 1000);
+    setTimeout(typeCharacter, 800);
 }
 
 // Add scroll-triggered color effects
