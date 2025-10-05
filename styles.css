@@ -267,7 +267,7 @@ header::before {
 /* Header text styling */
 .header-text {
     font-family: 'Oswald', sans-serif;
-    font-size: 3.2rem;
+    font-size: 4.5rem;
     font-weight: 600;
     color: var(--aureolin);
     margin-bottom: 12px;
@@ -280,7 +280,7 @@ header::before {
 
 /* Header subtitle styling */
 .header-subtitle {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     color: var(--cream);
     opacity: 0.9;
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
