@@ -857,7 +857,7 @@ main {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 25px;
-    padding: 60px 50px;
+    padding: 96px 84px;
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.2),
         0 10px 25px rgba(248, 230, 29, 0.1),
@@ -871,11 +871,11 @@ main {
 /* New Biography Layout */
 .biography-layout {
     display: flex;
-    gap: 60px;
+    gap: 96px;
     align-items: flex-start;
-    min-height: 700px;
+    min-height: 1020px;
     justify-content: center;
-    max-width: 1800px;
+    max-width: 2640px;
     margin: 0 auto;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.3s forwards;
@@ -894,7 +894,7 @@ main {
 
 /* Portrait Container */
 .portrait-container {
-    flex: 0 0 450px;
+    flex: 0 0 660px;
     display: flex;
     justify-content: center;
     align-self: flex-start;
@@ -904,17 +904,17 @@ main {
 
 .portrait-frame {
     position: relative;
-    width: 450px;
-    height: 550px;
+    width: 660px;
+    height: 816px;
     background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
     border-radius: 20px;
-    padding: 15px;
+    padding: 22px;
     box-shadow: 
         0 25px 50px rgba(0, 0, 0, 0.4),
         0 10px 30px rgba(248, 230, 29, 0.3),
         inset 0 2px 4px rgba(255, 255, 255, 0.6),
         inset 0 -2px 4px rgba(0, 0, 0, 0.1);
-    border: 5px solid var(--aureolin);
+    border: 7px solid var(--aureolin);
     overflow: hidden;
     transition: all 0.4s ease;
 }
@@ -1007,8 +1007,8 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    max-width: 1000px;
+    gap: 30px;
+    max-width: 1440px;
     min-width: 0;
 }
 
@@ -1020,9 +1020,9 @@ main {
 .commander-title {
     color: var(--cream);
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
+    font-size: 4.2rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 22px;
     line-height: 1.2;
     text-shadow: 
         2px 2px 8px rgba(0, 0, 0, 0.8),
@@ -1030,7 +1030,7 @@ main {
     text-transform: uppercase;
     letter-spacing: 1.5px;
     position: relative;
-    padding-bottom: 15px;
+    padding-bottom: 22px;
 }
 
 .commander-title::after {
@@ -1047,7 +1047,7 @@ main {
 
 .commander-service-period {
     font-family: 'Oswald', sans-serif;
-    font-size: 1.4rem;
+    font-size: 2.04rem;
     color: var(--aureolin);
     font-weight: 600;
     margin: 0;
@@ -1064,7 +1064,7 @@ main {
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 20px;
-    padding: 45px;
+    padding: 66px;
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.3),
         0 8px 25px rgba(248, 230, 29, 0.15),
@@ -1073,8 +1073,8 @@ main {
     border: 1px solid rgba(248, 230, 29, 0.3);
     position: relative;
     overflow: hidden;
-    min-height: 400px;
-    max-height: 600px;
+    min-height: 600px;
+    max-height: 900px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -1201,8 +1201,8 @@ main {
 }
 
 .typing-text {
-    font-size: 1.3rem;
-    line-height: 1.9;
+    font-size: 1.8rem;
+    line-height: 2.4;
     color: var(--cream);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     text-align: justify;
