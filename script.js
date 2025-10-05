@@ -571,6 +571,12 @@ function startBiographyTyping(text, textElement, cursorElement) {
     // Clear any existing content
     textElement.textContent = '';
     
+    // Add typing class to text box
+    const textBox = textElement.closest('.biography-text-box');
+    if (textBox) {
+        textBox.classList.add('typing-active');
+    }
+    
     // Show cursor
     if (cursorElement) {
         cursorElement.style.display = 'inline';
@@ -599,6 +605,11 @@ function startBiographyTyping(text, textElement, cursorElement) {
             setTimeout(typeCharacter, delay);
         } else {
             // Finished typing, hide cursor after a delay
+            if (textBox) {
+                textBox.classList.remove('typing-active');
+                textBox.classList.add('typing-complete');
+            }
+            
             setTimeout(() => {
                 if (cursorElement) {
                     cursorElement.style.display = 'none';
