@@ -1450,52 +1450,6 @@ main {
     }
 }
 
-/* Portrait label */
-.portrait-label {
-    margin-top: 25px;
-    text-align: center;
-    opacity: 0;
-    animation: labelFadeIn 0.8s ease-out 1.2s forwards;
-}
-
-@keyframes labelFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.label-text {
-    display: inline-block;
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--aureolin);
-    letter-spacing: 3px;
-    padding: 10px 25px;
-    background: rgba(248, 230, 29, 0.1);
-    border: 1px solid rgba(248, 230, 29, 0.3);
-    border-radius: 25px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    box-shadow: 
-        0 5px 15px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-}
-
-.portrait-label:hover .label-text {
-    background: rgba(248, 230, 29, 0.15);
-    border-color: rgba(248, 230, 29, 0.4);
-    box-shadow: 
-        0 8px 20px rgba(0, 0, 0, 0.3),
-        0 0 15px rgba(248, 230, 29, 0.3);
-    transform: translateY(-2px);
-}
-
 /* Service period wrapper */
 .service-period-wrapper {
     display: flex;
@@ -1602,68 +1556,7 @@ main {
     }
 }
 
-/* Keyboard Hint */
-.keyboard-hint {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(46, 54, 90, 0.95);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 12px 25px;
-    border-radius: 50px;
-    border: 1px solid rgba(248, 230, 29, 0.3);
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.4),
-        0 5px 15px rgba(248, 230, 29, 0.2);
-    opacity: 0;
-    animation: hintFadeIn 1s ease-out 2s forwards;
-    z-index: 100;
-}
-
-@keyframes hintFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
-    100% {
-        opacity: 0.9;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-.keyboard-hint:hover {
-    opacity: 1;
-    box-shadow: 
-        0 12px 35px rgba(0, 0, 0, 0.5),
-        0 6px 20px rgba(248, 230, 29, 0.3);
-}
-
-.hint-text {
-    font-family: 'Crimson Text', serif;
-    font-size: 0.95rem;
-    color: var(--cream);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.hint-text kbd {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--jet);
-    background: var(--aureolin);
-    padding: 4px 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    letter-spacing: 1px;
-}
-
+/* Biography Section Enhancements */
 .biography-section::before {
     content: '';
     position: absolute;
