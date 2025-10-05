@@ -618,12 +618,6 @@ function goToBiographyWithTransition(commanderId) {
     });
 }
 
-// Add some placeholder images if they don't exist
-function createPlaceholderImage() {
-    // This is a simple placeholder - in a real application, you'd want actual images
-    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxNTAiIGhlaWdodD0iMTUwIiBmaWxsPSIjQ0NDIi8+Cjx0ZXh0IHg9Ijc1IiB5PSI3NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+UGhvdG88L3RleHQ+Cjwvc3ZnPgo=';
-}
-
 // Typing animation function removed - now using static text
 
 // Biography typing animation function
