@@ -1152,8 +1152,10 @@ main {
     overflow: hidden;
     min-height: 650px;
     max-height: 750px;
-    width: 100%;
-    max-width: 100%;
+    width: 1620px;
+    max-width: 1620px;
+    min-width: 1620px;
+    flex-shrink: 0;
     box-sizing: border-box;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
@@ -2069,6 +2071,9 @@ header {
         max-height: 900px;
         min-height: 800px;
         border-width: 3px;
+        width: 1790px;
+        max-width: 1790px;
+        min-width: 1790px;
     }
     
     .biography-text-box::before {
