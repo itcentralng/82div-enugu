@@ -3013,3 +3013,185 @@ body.page-transition {
 #modalImage:hover::before {
     opacity: 1;
 }
+
+
+/* Hero Banner Section */
+.history-hero-banner {
+    position: relative;
+    background: linear-gradient(135deg, 
+        rgba(46, 54, 90, 0.95) 0%, 
+        rgba(1, 135, 176, 0.9) 50%,
+        rgba(44, 43, 39, 0.95) 100%);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 30px;
+    padding: 80px 60px;
+    margin-bottom: 50px;
+    box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.4),
+        0 15px 40px rgba(248, 230, 29, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(248, 230, 29, 0.4);
+    overflow: hidden;
+    animation: heroSlideIn 1s ease-out;
+}
+
+@keyframes heroSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(248, 230, 29, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(1, 135, 176, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    animation: overlayPulse 8s ease-in-out infinite;
+}
+
+@keyframes overlayPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero-icon {
+    font-size: 6rem;
+    margin-bottom: 20px;
+    animation: dragonFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(248, 230, 29, 0.6));
+}
+
+@keyframes dragonFloat {
+    0%, 100% { transform: translateY(0px) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.hero-title {
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 0 0 25px 0;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+        3px 3px 10px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(248, 230, 29, 0.5);
+    animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 
+            3px 3px 10px rgba(0, 0, 0, 0.9),
+            0 0 30px rgba(248, 230, 29, 0.5);
+    }
+    50% {
+        text-shadow: 
+            3px 3px 10px rgba(0, 0, 0, 0.9),
+            0 0 40px rgba(248, 230, 29, 0.7),
+            0 0 60px rgba(1, 135, 176, 0.4);
+    }
+}
+
+.hero-divider {
+    width: 200px;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--aureolin) 20%,
+        var(--light-aureolin) 50%,
+        var(--aureolin) 80%,
+        transparent);
+    margin: 0 auto 25px;
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(248, 230, 29, 0.6);
+}
+
+.hero-motto {
+    color: var(--aureolin);
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin: 0 0 50px 0;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background: rgba(248, 230, 29, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px 40px;
+    border: 2px solid rgba(248, 230, 29, 0.3);
+    transition: all 0.4s ease;
+    animation: statFadeIn 0.8s ease-out backwards;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.2s; }
+.stat-item:nth-child(2) { animation-delay: 0.4s; }
+.stat-item:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes statFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: rgba(248, 230, 29, 0.15);
+    border-color: rgba(248, 230, 29, 0.5);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 8px 20px rgba(248, 230, 29, 0.4);
+}
+
+.stat-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--aureolin);
+    margin-bottom: 10px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+.stat-label {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
