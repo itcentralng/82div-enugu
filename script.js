@@ -314,9 +314,16 @@ function initializeHomePage() {
         });
     }
     
-    // Typing animation removed - using static text now
+    // Add event listener for history card in new layout
+    const historyCard = document.querySelector('.history-card');
+    if (historyCard) {
+        historyCard.addEventListener('mouseenter', function() {
+            triggerHoverColorEffect(this);
+        });
+    }
     
-    // Populate commanders grid
+    // Populate current commander and commanders grid
+    populateCurrentCommander();
     if (commandersGrid) {
         populateCommanders();
         startCardAnimation();
@@ -409,11 +416,45 @@ function initializeBiographyKeyboardShortcuts() {
     });
 }
 
-// Populate commanders grid
+// Populate current commander card
+function populateCurrentCommander() {
+    const currentCommanderCard = document.getElementById('currentCommanderCard');
+    if (!currentCommanderCard) return;
+    
+    // Get the current (last) commander
+    const currentCommander = commanders[commanders.length - 1];
+    
+    currentCommanderCard.onclick = () => goToBiographyWithTransition(currentCommander.id);
+    currentCommanderCard.addEventListener('mouseenter', function() {
+        triggerHoverColorEffect(this);
+    });
+    
+    // Truncate biography for display
+    const shortBio = currentCommander.biography.length > 180 
+        ? currentCommander.biography.substring(0, 180) + '...' 
+        : currentCommander.biography;
+    
+    currentCommanderCard.innerHTML = `
+        <div class="current-commander-badge">CURRENT GOC</div>
+        <div class="commander-card-inner">
+            <div class="commander-card-front">
+                <img src="${currentCommander.image}" alt="${currentCommander.name}" class="commander-image" onerror="this.src='images/placeholder.jpg'">
+                <div class="commander-name">${currentCommander.name}</div>
+                <div class="commander-service">${currentCommander.yearOfService}</div>
+                <div style="margin-top: 15px; padding: 10px 20px; background: rgba(248, 230, 29, 0.15); border-radius: 15px; font-size: 0.85rem; font-weight: bold; color: var(--cream); text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(248, 230, 29, 0.3);">Click for Biography</div>
+            </div>
+        </div>
+    `;
+}
+
+// Populate commanders grid (excluding current commander)
 function populateCommanders() {
     commandersGrid.innerHTML = '';
     
-    commanders.forEach(commander => {
+    // Get all commanders except the current one (last in array)
+    const allCommandersExceptCurrent = commanders.slice(0, -1);
+    
+    allCommandersExceptCurrent.forEach(commander => {
         const commanderCard = document.createElement('div');
         commanderCard.className = 'commander-card';
         commanderCard.onclick = () => goToBiographyWithTransition(commander.id);

@@ -378,11 +378,233 @@ main {
     to { text-shadow: 0 0 25px rgba(248, 230, 29, 0.8), 0 0 35px rgba(248, 230, 29, 0.4); }
 }
 
+/* Top Section Styles */
+.top-section {
+    margin-bottom: 60px;
+    padding: 40px 0;
+}
+
+.history-current-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* History Card Styles */
+.history-card {
+    background-color: transparent;
+    width: 100%;
+    height: 480px;
+    border: 1px solid rgba(248, 230, 29, 0.2);
+    cursor: pointer;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.history-card .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.history-card .card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    background: rgba(245, 245, 220, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.2),
+        0 5px 15px rgba(248, 230, 29, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(248, 230, 29, 0.2);
+}
+
+.history-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.4),
+        0 10px 30px rgba(248, 230, 29, 0.3);
+}
+
+.history-card .card-icon {
+    font-size: 4rem;
+    margin-bottom: 25px;
+    filter: grayscale(0.3) brightness(1.2);
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+.history-card .card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--aureolin);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.history-card .card-subtitle {
+    font-size: 1.2rem;
+    color: var(--cream);
+    opacity: 0.9;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.history-card .card-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--cream);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    opacity: 0.8;
+}
+
+/* Current Commander Card Styles */
+.current-commander-card {
+    background-color: transparent;
+    width: 100%;
+    height: 480px;
+    border: 2px solid rgba(248, 230, 29, 0.4);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 8px 25px rgba(248, 230, 29, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.current-commander-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        var(--aureolin), 
+        var(--aureolin-2), 
+        var(--aureolin));
+    border-radius: 20px 20px 0 0;
+}
+
+.current-commander-card .commander-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform-style: preserve-3d;
+}
+
+.current-commander-card .commander-card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, 
+        rgba(46, 54, 90, 0.15) 0%, 
+        rgba(38, 45, 72, 0.12) 30%,
+        rgba(44, 43, 39, 0.1) 70%, 
+        rgba(46, 54, 90, 0.12) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(248, 230, 29, 0.3);
+}
+
+/* Current Commander Badge */
+.current-commander-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, var(--aureolin), var(--light-aureolin));
+    color: var(--jet);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(248, 230, 29, 0.4);
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(248, 230, 29, 0.4);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 6px 20px rgba(248, 230, 29, 0.6);
+        transform: scale(1.05);
+    }
+}
+
+/* All Commanders Section */
+.all-commanders-section {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 2px solid rgba(248, 230, 29, 0.3);
+    position: relative;
+}
+
+.section-title {
+    text-align: center;
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-shadow: 
+        2px 2px 4px var(--shadow-dark),
+        0 0 20px rgba(201, 169, 97, 0.3);
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--aureolin), transparent);
+    border-radius: 2px;
+}
+
 .commanders-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 70px;
-    padding: 80px 0 40px;
+    padding: 40px 0;
     position: relative;
     max-width: 3000px;
     margin: 0 auto;
@@ -1926,10 +2148,106 @@ header {
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
+/* Responsive Design for Top Section */
+@media (max-width: 1200px) {
+    .history-current-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        max-width: 600px;
+    }
+    
+    .commanders-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    .commanders-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .history-card,
+    .current-commander-card {
+        height: 400px;
+    }
+    
+    .history-card .card-icon {
+        font-size: 3rem;
+    }
+    
+    .history-card .card-title {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .commanders-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .history-current-container {
+        gap: 30px;
+    }
+    
+    .history-card,
+    .current-commander-card {
+        height: 350px;
+    }
+    
+    .all-commanders-section {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .commanders-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 20px;
+    }
+    
+    .top-section {
+        padding: 20px 0;
+        margin-bottom: 40px;
+    }
+    
+    .history-current-container {
+        padding: 0 20px;
+        gap: 25px;
+    }
+    
+    .commanders-section h1 {
+        font-size: 2.5rem;
+        padding: 0 20px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+}
+
 /* High-end visual enhancements for larger screens */
 @media (min-width: 1400px) {
     .commanders-section h1 {
         font-size: 4rem;
+    }
+    
+    .history-current-container {
+        max-width: 1600px;
+        gap: 100px;
+    }
+    
+    .history-card,
+    .current-commander-card {
+        height: 520px;
     }
     
     .commanders-grid {

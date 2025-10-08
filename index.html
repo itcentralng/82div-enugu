@@ -41,8 +41,35 @@
     <main>
         <section class="commanders-section">
             <h1 id="typedTitle">CHRONICLE OF COMMAND<br>82 DIVISION NIGERIAN ARMY</h1>
-            <div class="commanders-grid" id="commandersGrid">
-                <!-- Commanders will be populated by JavaScript -->
+            
+            <!-- Top Section: History and Current Commander -->
+            <div class="top-section">
+                <div class="history-current-container">
+                    <!-- History Card -->
+                    <div class="history-card" onclick="goToHistoryWithTransition()">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-icon">🏛️</div>
+                                <div class="card-title">DIVISION HISTORY</div>
+                                <div class="card-subtitle">Explore Our Legacy</div>
+                                <div class="card-description">Discover the rich heritage and proud traditions of the 82 Division Nigerian Army</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Current Commander Card -->
+                    <div class="current-commander-card" id="currentCommanderCard">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- All Commanders Grid -->
+            <div class="all-commanders-section">
+                <h2 class="section-title">ALL COMMANDERS</h2>
+                <div class="commanders-grid" id="commandersGrid">
+                    <!-- Commanders will be populated by JavaScript -->
+                </div>
             </div>
         </section>
     </main>
