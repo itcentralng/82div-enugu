@@ -2516,7 +2516,7 @@ main {
     .biography-layout {
         max-width: 3000px;
         gap: 160px;
-        min-height: 1000px;
+        min-height: 800px;
     }
     
     .portrait-container {
