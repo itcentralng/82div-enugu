@@ -2109,16 +2109,6 @@ main {
     z-index: 1;
 }
 
-/* Improved glass border effects */
-.commander-card,
-.history-section,
-.biography-section,
-header {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 1px solid rgba(248, 230, 29, 0.1);
-    border-right: 1px solid rgba(46, 54, 90, 0.1);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
 
 /* Enhanced floating back button glass effect */
 .floating-back-btn:hover {
