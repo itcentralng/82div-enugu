@@ -705,8 +705,7 @@ main::before {
     position: relative;
     max-width: 3000px;
     margin: 60px auto 0;
-    border-top: 2px solid rgba(0, 136, 183, 0.3);
-    padding-top: 40px;
+    padding-top: 10px;
 }
 
 /* Flip card container */
@@ -922,7 +921,7 @@ main::before {
     margin: 80px auto;
     max-width: 2600px;
     position: relative;
-    padding: 60px 40px;
+    padding: 13px 40px;
     background: rgba(47, 55, 91, 0.05);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -2164,7 +2163,7 @@ main::before {
 }
 
 .biography-text {
-    font-size: 1.65rem;
+    font-size: 2.30rem;
     line-height: 2.2;
     text-align: justify;
     color: var(--cream);
