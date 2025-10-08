@@ -864,34 +864,63 @@ main {
 /* Current GOC Biography Layout - reuse existing biography styles */
 .current-goc-biography .biography-layout {
     margin-top: 40px;
+    align-items: flex-start; /* Ensure both sides align to top */
 }
 
 .current-goc-biography .portrait-container {
     flex: 0 0 500px; /* Smaller than biography page */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start; /* Align to top */
 }
 
 .current-goc-biography .portrait-frame {
     width: 500px;
     height: 630px; /* Proportionally smaller */
     padding: 20px;
+    margin-bottom: 30px;
+}
+
+.current-goc-biography .portrait-info {
+    text-align: center;
+    width: 100%;
+}
+
+.current-goc-biography .portrait-info .commander-title {
+    font-size: 2.2rem;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 15px 0;
+    text-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.8),
+        0 1px 2px rgba(248, 230, 29, 0.3);
+    line-height: 1.2;
+}
+
+.current-goc-biography .portrait-info .commander-service-period {
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    color: var(--aureolin);
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
 }
 
 .current-goc-biography .biography-text-container {
-    gap: 25px; /* Smaller gap */
-}
-
-.current-goc-biography .commander-title {
-    font-size: 2.8rem; /* Smaller title */
-    margin-bottom: 15px;
-}
-
-.current-goc-biography .commander-service-period {
-    font-size: 1.3rem;
-    margin-bottom: 25px;
+    gap: 0; /* Remove gap since header info is now in left column */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start; /* Align to top */
 }
 
 .current-goc-biography .biography-text-box {
-    max-height: 400px; /* Limit height */
+    height: 820px; /* Match exact height of portrait + name + service period */
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(248, 230, 29, 0.5) transparent;
