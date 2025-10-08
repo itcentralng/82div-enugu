@@ -388,7 +388,7 @@ main {
 .history-current-container {
     display: flex;
     justify-content: center;
-    max-width: 300px;
+    max-width: 240px;
     margin: 0 auto;
     align-items: center;
 }
@@ -443,7 +443,7 @@ main {
 }
 
 .history-card .card-icon {
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     animation: iconFloat 3s ease-in-out infinite;
     display: flex;
     justify-content: center;
