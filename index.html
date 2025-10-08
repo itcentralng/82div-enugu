@@ -26,7 +26,7 @@
     
     <header>
         <div class="header-card-container">
-            <!-- Top Section: History and Current Commander -->
+            <!-- Top Section: History Card Only -->
             <div class="top-section">
                 <div class="history-current-container">
                     <!-- History Card -->
@@ -42,11 +42,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Current Commander Card -->
-                    <div class="current-commander-card" id="currentCommanderCard">
-                        <!-- Will be populated by JavaScript -->
-                    </div>
                 </div>
             </div>
         </div>
@@ -55,6 +50,14 @@
     <main>
         <section class="commanders-section">
             <h1 id="typedTitle">CHRONICLE OF COMMAND<br>82 DIVISION NIGERIAN ARMY</h1>
+            
+            <!-- Current GOC Biography Section -->
+            <section class="current-goc-biography">
+                <div class="current-goc-badge">CURRENT GENERAL OFFICER COMMANDING</div>
+                <div class="biography-layout" id="currentGocBiography">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </section>
             
             <!-- Commanders Grid -->
             <div class="commanders-grid" id="commandersGrid">

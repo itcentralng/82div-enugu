@@ -386,10 +386,9 @@ main {
 }
 
 .history-current-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    max-width: 1400px;
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
     margin: 0 auto;
     align-items: center;
 }
@@ -800,6 +799,120 @@ main {
         var(--aureolin), 
         var(--aureolin-2), 
         var(--aureolin));
+}
+
+/* Current GOC Biography Section */
+.current-goc-biography {
+    margin: 80px auto;
+    max-width: 2600px;
+    position: relative;
+    padding: 60px 40px;
+    background: rgba(46, 54, 90, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 30px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 10px 30px rgba(248, 230, 29, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(248, 230, 29, 0.35);
+}
+
+.current-goc-badge {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, 
+        var(--aureolin) 0%, 
+        var(--aureolin-2) 50%, 
+        var(--aureolin) 100%);
+    color: var(--jet);
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        0 4px 10px rgba(248, 230, 29, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(46, 54, 90, 0.2);
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1);
+        box-shadow: 
+            0 8px 20px rgba(0, 0, 0, 0.4),
+            0 4px 10px rgba(248, 230, 29, 0.3),
+            0 0 0 0 rgba(248, 230, 29, 0);
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 
+            0 12px 30px rgba(0, 0, 0, 0.5),
+            0 6px 15px rgba(248, 230, 29, 0.4),
+            0 0 0 8px rgba(248, 230, 29, 0.2);
+    }
+}
+
+/* Current GOC Biography Layout - reuse existing biography styles */
+.current-goc-biography .biography-layout {
+    margin-top: 40px;
+}
+
+.current-goc-biography .portrait-container {
+    flex: 0 0 500px; /* Smaller than biography page */
+}
+
+.current-goc-biography .portrait-frame {
+    width: 500px;
+    height: 630px; /* Proportionally smaller */
+    padding: 20px;
+}
+
+.current-goc-biography .biography-text-container {
+    gap: 25px; /* Smaller gap */
+}
+
+.current-goc-biography .commander-title {
+    font-size: 2.8rem; /* Smaller title */
+    margin-bottom: 15px;
+}
+
+.current-goc-biography .commander-service-period {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+}
+
+.current-goc-biography .biography-text-box {
+    max-height: 400px; /* Limit height */
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(248, 230, 29, 0.5) transparent;
+}
+
+.current-goc-biography .biography-text-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.current-goc-biography .biography-text-box::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.current-goc-biography .biography-text-box::-webkit-scrollbar-thumb {
+    background: rgba(248, 230, 29, 0.5);
+    border-radius: 4px;
+}
+
+.current-goc-biography .biography-text-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(248, 230, 29, 0.7);
 }
 
 .history-section::after {
@@ -2125,14 +2238,29 @@ main {
 /* Responsive Design for Top Section */
 @media (max-width: 1200px) {
     .history-current-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        max-width: 600px;
+        max-width: 500px;
     }
     
     .commanders-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 50px;
+    }
+    
+    .current-goc-biography .biography-layout {
+        gap: 60px;
+    }
+    
+    .current-goc-biography .portrait-container {
+        flex: 0 0 400px;
+    }
+    
+    .current-goc-biography .portrait-frame {
+        width: 400px;
+        height: 500px;
+    }
+    
+    .current-goc-biography .commander-title {
+        font-size: 2.4rem;
     }
 }
 
@@ -2162,10 +2290,8 @@ main {
         gap: 30px;
     }
     
-
-    
     .history-current-container {
-        gap: 30px;
+        max-width: 400px;
     }
     
     .history-card,
@@ -2175,6 +2301,33 @@ main {
     
     .commanders-grid {
         margin-top: 40px;
+    }
+    
+    .current-goc-biography {
+        margin: 60px 20px;
+        padding: 40px 20px;
+    }
+    
+    .current-goc-biography .biography-layout {
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+    }
+    
+    .current-goc-biography .portrait-container {
+        flex: none;
+        position: relative;
+        top: 0;
+    }
+    
+    .current-goc-biography .portrait-frame {
+        width: 300px;
+        height: 380px;
+    }
+    
+    .current-goc-biography .commander-title {
+        font-size: 2rem;
+        text-align: center;
     }
 }
 
@@ -2192,7 +2345,7 @@ main {
     
     .history-current-container {
         padding: 0 20px;
-        gap: 25px;
+        max-width: 350px;
     }
     
     .commanders-section h1 {
@@ -2200,7 +2353,18 @@ main {
         padding: 0 20px;
     }
     
-
+    .current-goc-biography .portrait-frame {
+        width: 250px;
+        height: 320px;
+    }
+    
+    .current-goc-biography .commander-title {
+        font-size: 1.8rem;
+    }
+    
+    .current-goc-biography .biography-text-box {
+        max-height: 300px;
+    }
 }
 
 /* High-end visual enhancements for larger screens */
@@ -2210,8 +2374,7 @@ main {
     }
     
     .history-current-container {
-        max-width: 1600px;
-        gap: 100px;
+        max-width: 700px;
     }
     
     .history-card,

@@ -322,8 +322,8 @@ function initializeHomePage() {
         });
     }
     
-    // Populate current commander and commanders grid
-    populateCurrentCommander();
+    // Populate current GOC biography and commanders grid
+    populateCurrentGocBiography();
     if (commandersGrid) {
         populateCommanders();
         startCardAnimation();
@@ -416,35 +416,52 @@ function initializeBiographyKeyboardShortcuts() {
     });
 }
 
-// Populate current commander card
-function populateCurrentCommander() {
-    const currentCommanderCard = document.getElementById('currentCommanderCard');
-    if (!currentCommanderCard) return;
+// Populate current GOC biography section
+function populateCurrentGocBiography() {
+    const currentGocBiography = document.getElementById('currentGocBiography');
+    if (!currentGocBiography) return;
     
     // Get the current (last) commander
     const currentCommander = commanders[commanders.length - 1];
     
-    currentCommanderCard.onclick = () => goToBiographyWithTransition(currentCommander.id);
-    currentCommanderCard.addEventListener('mouseenter', function() {
-        triggerHoverColorEffect(this);
-    });
-    
-    // Truncate biography for display
-    const shortBio = currentCommander.biography.length > 180 
-        ? currentCommander.biography.substring(0, 180) + '...' 
-        : currentCommander.biography;
-    
-    currentCommanderCard.innerHTML = `
-        <div class="current-commander-badge">CURRENT GOC</div>
-        <div class="commander-card-inner">
-            <div class="commander-card-front">
-                <img src="${currentCommander.image}" alt="${currentCommander.name}" class="commander-image" onerror="this.src='images/placeholder.jpg'">
-                <div class="commander-name">${currentCommander.name}</div>
-                <div class="commander-service">${currentCommander.yearOfService}</div>
-                <div style="margin-top: 15px; padding: 10px 20px; background: rgba(248, 230, 29, 0.15); border-radius: 15px; font-size: 0.85rem; font-weight: bold; color: var(--cream); text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(248, 230, 29, 0.3);">Click for Biography</div>
+    // Create biography layout similar to biography page
+    currentGocBiography.innerHTML = `
+        <div class="portrait-container">
+            <div class="portrait-frame">
+                <img src="${currentCommander.image}" alt="${currentCommander.name}" class="commander-portrait" onerror="this.src='images/placeholder.jpg'">
+                <div class="portrait-shine"></div>
+            </div>
+        </div>
+        <div class="biography-text-container">
+            <div class="biography-header">
+                <h2 class="commander-title">${currentCommander.name}</h2>
+            </div>
+            <div class="service-period-wrapper">
+                <p class="commander-service-period">Service Period: ${currentCommander.yearOfService}</p>
+            </div>
+            <div class="biography-text-box">
+                <div class="text-box-header">
+                    <span class="header-icon">📜</span>
+                    <span class="header-text">BIOGRAPHY</span>
+                    <span class="header-icon">📜</span>
+                </div>
+                <p class="biography-text">${currentCommander.biography}</p>
             </div>
         </div>
     `;
+    
+    // Add click event to go to full biography page
+    currentGocBiography.addEventListener('click', function() {
+        goToBiographyWithTransition(currentCommander.id);
+    });
+    
+    // Add hover effect
+    currentGocBiography.addEventListener('mouseenter', function() {
+        triggerHoverColorEffect(this);
+    });
+    
+    // Make it look clickable
+    currentGocBiography.style.cursor = 'pointer';
 }
 
 // Populate commanders grid (excluding current commander)
