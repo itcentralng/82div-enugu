@@ -388,7 +388,7 @@ main {
 .history-current-container {
     display: flex;
     justify-content: center;
-    max-width: 600px;
+    max-width: 300px;
     margin: 0 auto;
     align-items: center;
 }
@@ -397,7 +397,7 @@ main {
 .history-card {
     background-color: transparent;
     width: 100%;
-    height: 480px;
+    height: 220px;
     border: 1px solid rgba(248, 230, 29, 0.2);
     cursor: pointer;
     border-radius: 20px;
@@ -422,7 +422,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 30px;
+    padding: 15px;
     box-sizing: border-box;
     background: rgba(245, 245, 220, 0.1);
     backdrop-filter: blur(15px);
@@ -443,30 +443,30 @@ main {
 }
 
 .history-card .card-icon {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     animation: iconFloat 3s ease-in-out infinite;
     display: flex;
     justify-content: center;
 }
 
 .history-card .card-icon .header-logo {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     object-fit: fill;
-    border: 4px solid var(--aureolin);
+    border: 3px solid var(--aureolin);
     transition: all 0.3s ease;
     box-shadow: 
-        0 8px 20px var(--shadow-dark),
-        0 0 0 3px rgba(248, 230, 29, 0.2);
+        0 6px 15px var(--shadow-dark),
+        0 0 0 2px rgba(248, 230, 29, 0.2);
 }
 
 .history-card .card-title {
     font-family: 'Oswald', sans-serif;
-    font-size: 2rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--aureolin);
-    margin-bottom: 15px;
+    margin-bottom: 0;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -2272,7 +2272,7 @@ main {
     
     .history-card,
     .current-commander-card {
-        height: 400px;
+        height: 200px;
     }
     
     .history-card .card-icon {
@@ -2280,7 +2280,7 @@ main {
     }
     
     .history-card .card-title {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
     }
 }
 
@@ -2291,12 +2291,12 @@ main {
     }
     
     .history-current-container {
-        max-width: 400px;
+        max-width: 280px;
     }
     
     .history-card,
     .current-commander-card {
-        height: 350px;
+        height: 180px;
     }
     
     .commanders-grid {
@@ -2345,7 +2345,7 @@ main {
     
     .history-current-container {
         padding: 0 20px;
-        max-width: 350px;
+        max-width: 250px;
     }
     
     .commanders-section h1 {
@@ -2374,12 +2374,12 @@ main {
     }
     
     .history-current-container {
-        max-width: 700px;
+        max-width: 350px;
     }
     
     .history-card,
     .current-commander-card {
-        height: 520px;
+        height: 240px;
     }
     
     .commanders-grid {
