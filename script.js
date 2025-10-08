@@ -438,11 +438,7 @@ function populateCurrentGocBiography() {
         </div>
         <div class="biography-text-container">
             <div class="biography-text-box">
-                <div class="text-box-header">
-                    <span class="header-icon">📜</span>
-                    <span class="header-text">BIOGRAPHY</span>
-                    <span class="header-icon">📜</span>
-                </div>
+                
                 <p class="biography-text">${currentCommander.biography}</p>
             </div>
         </div>
