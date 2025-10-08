@@ -26,22 +26,6 @@
     
     <header>
         <div class="header-card-container">
-            <div class="header-card">
-                <div class="header-card-inner">
-                    <div class="header-card-front">
-                        <img src="images/82nd-logo.png" alt="82nd Division Logo" class="header-logo" id="logo">
-                        <div class="header-text">HISTORY</div>
-                        <div class="header-subtitle">Click to explore our history</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section class="commanders-section">
-            <h1 id="typedTitle">CHRONICLE OF COMMAND<br>82 DIVISION NIGERIAN ARMY</h1>
-            
             <!-- Top Section: History and Current Commander -->
             <div class="top-section">
                 <div class="history-current-container">
@@ -49,7 +33,9 @@
                     <div class="history-card" onclick="goToHistoryWithTransition()">
                         <div class="card-inner">
                             <div class="card-front">
-                                <div class="card-icon">🏛️</div>
+                                <div class="card-icon">
+                                    <img src="images/82nd-logo.png" alt="82nd Division Logo" class="header-logo" id="logo">
+                                </div>
                                 <div class="card-title">DIVISION HISTORY</div>
                                 <div class="card-subtitle">Explore Our Legacy</div>
                                 <div class="card-description">Discover the rich heritage and proud traditions of the 82 Division Nigerian Army</div>
@@ -63,13 +49,16 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="commanders-section">
+            <h1 id="typedTitle">CHRONICLE OF COMMAND<br>82 DIVISION NIGERIAN ARMY</h1>
             
-            <!-- All Commanders Grid -->
-            <div class="all-commanders-section">
-                <h2 class="section-title">ALL COMMANDERS</h2>
-                <div class="commanders-grid" id="commandersGrid">
-                    <!-- Commanders will be populated by JavaScript -->
-                </div>
+            <!-- Commanders Grid -->
+            <div class="commanders-grid" id="commandersGrid">
+                <!-- Commanders will be populated by JavaScript -->
             </div>
         </section>
     </main>
