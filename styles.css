@@ -120,7 +120,7 @@ header {
     /* background: rgba(46, 54, 90, 0.15); */
     /* backdrop-filter: blur(20px); */
     /* -webkit-backdrop-filter: blur(20px); */
-    padding: 80px 0;
+    padding: 40px 0;
     position: relative;
     /* box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.3),
@@ -294,7 +294,7 @@ header::before {
 main {
     max-width: 3200px;
     margin: 0 auto;
-    padding: 60px 80px;
+    padding: 20px 80px;
     position: relative;
     min-height: 100vh;
     display: flex;
@@ -381,7 +381,7 @@ main {
 /* Top Section Styles - Now in Header */
 .top-section {
     margin-bottom: 0;
-    padding: 40px 0;
+    padding: 20px 0;
     width: 100%;
 }
 
@@ -2339,8 +2339,8 @@ main {
     }
     
     .top-section {
-        padding: 20px 0;
-        margin-bottom: 40px;
+        padding: 15px 0;
+        margin-bottom: 20px;
     }
     
     .history-current-container {
