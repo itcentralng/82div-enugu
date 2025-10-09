@@ -697,15 +697,45 @@ main::before {
 
 /* Section title styles removed - no longer using ALL COMMANDERS heading */
 
+/* Commanders grid container wrapper */
+.commanders-grid-wrapper {
+    height: 1650px; /* Fixed height to show 3 rows at a time */
+    overflow: hidden;
+    position: relative;
+    max-width: 3000px;
+    margin: 60px auto 0;
+}
+
+/* Fade effect for top and bottom of scrolling area */
+.commanders-grid-wrapper::before,
+.commanders-grid-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.commanders-grid-wrapper::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+}
+
+.commanders-grid-wrapper::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+}
+
 .commanders-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 70px;
     padding: 40px 0;
     position: relative;
-    max-width: 3000px;
-    margin: 60px auto 0;
     padding-top: 10px;
+    transition: transform 0.1s linear;
 }
 
 /* Flip card container */
@@ -2385,6 +2415,10 @@ main::before {
         max-width: 500px;
     }
     
+    .commanders-grid-wrapper {
+        height: 1400px; /* Adjust height for 4 columns */
+    }
+    
     .commanders-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 50px;
@@ -2409,6 +2443,10 @@ main::before {
 }
 
 @media (max-width: 992px) {
+    .commanders-grid-wrapper {
+        height: 1200px; /* Adjust height for 3 columns */
+    }
+    
     .commanders-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 40px;
@@ -2429,6 +2467,10 @@ main::before {
 }
 
 @media (max-width: 768px) {
+    .commanders-grid-wrapper {
+        height: 1800px; /* Adjust height for 2 columns - more rows needed */
+    }
+    
     .commanders-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
@@ -2476,6 +2518,10 @@ main::before {
 }
 
 @media (max-width: 600px) {
+    .commanders-grid-wrapper {
+        height: 2500px; /* Much taller for single column layout */
+    }
+    
     .commanders-grid {
         grid-template-columns: 1fr;
         gap: 30px;

@@ -380,6 +380,111 @@ function startCardAnimation() {
     });
 }
 
+// Initialize infinite scrolling for commanders grid
+function initializeInfiniteScroll() {
+    if (!commandersGrid) return;
+    
+    const wrapper = commandersGrid.parentElement;
+    
+    // Start automatic scrolling after a brief delay
+    setTimeout(() => {
+        startInfiniteScroll();
+    }, 3000);
+    
+    // Pause scrolling on hover over the wrapper
+    if (wrapper) {
+        wrapper.addEventListener('mouseenter', pauseInfiniteScroll);
+        wrapper.addEventListener('mouseleave', resumeInfiniteScroll);
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', handleInfiniteScrollResize);
+}
+
+// Handle resize events for infinite scroll
+function handleInfiniteScrollResize() {
+    // Reset scroll position on resize to prevent layout issues
+    currentScrollPosition = 0;
+    if (commandersGrid) {
+        commandersGrid.style.transform = 'translateY(0px)';
+    }
+    
+    // Restart scrolling after a brief delay
+    pauseInfiniteScroll();
+    setTimeout(() => {
+        if (!isScrolling) {
+            startInfiniteScroll();
+        }
+    }, 1000);
+}
+
+// Start infinite scrolling animation
+function startInfiniteScroll() {
+    if (isScrolling) return;
+    
+    isScrolling = true;
+    const scrollSpeed = 0.3; // Slower, smoother scrolling
+    
+    function scrollStep() {
+        if (!isScrolling) return;
+        
+        currentScrollPosition += scrollSpeed;
+        
+        // Apply smooth transform to create upward scrolling effect
+        commandersGrid.style.transform = `translateY(-${currentScrollPosition}px)`;
+        
+        // Calculate current grid layout
+        const cardsPerRow = getCurrentCardsPerRow();
+        const cardHeight = 480; // card height
+        const gap = getCurrentGap();
+        const rowHeight = cardHeight + gap;
+        const rowsPerCycle = Math.ceil(commandersData.length / cardsPerRow);
+        const cycleHeight = rowsPerCycle * rowHeight;
+        
+        // Reset position when we've scrolled through one complete cycle
+        if (currentScrollPosition >= cycleHeight) {
+            currentScrollPosition = 0;
+        }
+        
+        requestAnimationFrame(scrollStep);
+    }
+    
+    requestAnimationFrame(scrollStep);
+}
+
+// Get current number of cards per row based on screen size
+function getCurrentCardsPerRow() {
+    const width = window.innerWidth;
+    if (width <= 600) return 1;
+    if (width <= 768) return 2;
+    if (width <= 992) return 3;
+    if (width <= 1200) return 4;
+    return 5;
+}
+
+// Get current gap size based on screen size
+function getCurrentGap() {
+    const width = window.innerWidth;
+    if (width <= 768) return 30;
+    if (width <= 992) return 40;
+    if (width <= 1200) return 50;
+    return 70;
+}
+
+// Pause infinite scrolling
+function pauseInfiniteScroll() {
+    isScrolling = false;
+}
+
+// Resume infinite scrolling
+function resumeInfiniteScroll() {
+    if (!isScrolling) {
+        setTimeout(() => {
+            startInfiniteScroll();
+        }, 1000); // Resume after 1 second delay
+    }
+}
+
 // Initialize biography page
 function initializeBiographyPage() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -497,14 +602,26 @@ function populateCurrentGocBiography() {
     currentGocBiography.style.cursor = 'pointer';
 }
 
-// Populate commanders grid (excluding current commander)
+// Infinite scroll variables
+let commandersData = [];
+let currentScrollPosition = 0;
+let isScrolling = false;
+let scrollInterval;
+
+// Populate commanders grid with infinite scrolling
 function populateCommanders() {
     commandersGrid.innerHTML = '';
     
     // Get all commanders except the current one (last in array)
-    const allCommandersExceptCurrent = commanders.slice(0, -1);
+    commandersData = commanders.slice(0, -1);
     
-    allCommandersExceptCurrent.forEach(commander => {
+    // Create enough cards to fill the grid multiple times for smooth scrolling
+    const cardsToShow = commandersData.length * 3; // Show 3 full cycles
+    
+    for (let i = 0; i < cardsToShow; i++) {
+        const commanderIndex = i % commandersData.length;
+        const commander = commandersData[commanderIndex];
+        
         const commanderCard = document.createElement('div');
         commanderCard.className = 'commander-card';
         commanderCard.onclick = () => goToBiographyWithTransition(commander.id);
@@ -533,7 +650,10 @@ function populateCommanders() {
         `;
         
         commandersGrid.appendChild(commanderCard);
-    });
+    }
+    
+    // Initialize infinite scrolling
+    initializeInfiniteScroll();
 }
 
 // Display biography with typing animation
