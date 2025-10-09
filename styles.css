@@ -701,10 +701,49 @@ main::before {
 /* Commanders grid container wrapper */
 .commanders-grid-wrapper {
     height: 1650px; /* Fixed height to show 3 rows at a time */
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
     max-width: 3000px;
     margin: 60px auto 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 136, 183, 0.7) rgba(47, 55, 91, 0.3);
+}
+
+/* Custom scrollbar styling for commanders grid */
+.commanders-grid-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+.commanders-grid-wrapper::-webkit-scrollbar-track {
+    background: rgba(47, 55, 91, 0.3);
+    border-radius: 12px;
+    margin: 15px 0;
+    border: 1px solid rgba(0, 136, 183, 0.1);
+}
+
+.commanders-grid-wrapper::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, 
+        var(--blue-ncs) 0%,
+        var(--light-blue-ncs) 50%,
+        var(--delft-blue) 100%);
+    border-radius: 12px;
+    box-shadow: 
+        0 0 15px rgba(0, 136, 183, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 136, 183, 0.3);
+}
+
+.commanders-grid-wrapper::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, 
+        var(--light-blue-ncs) 0%,
+        var(--blue-ncs) 50%,
+        var(--delft-blue) 100%);
+    box-shadow: 
+        0 0 20px rgba(0, 136, 183, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transform: scaleX(1.2);
 }
 
 /* Fade effect for top and bottom of scrolling area */
@@ -736,7 +775,6 @@ main::before {
     padding: 40px 0;
     position: relative;
     padding-top: 10px;
-    transition: transform 0.1s linear;
 }
 
 /* Flip card container */
