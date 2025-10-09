@@ -568,7 +568,14 @@ function populateCurrentGocBiography() {
     // Get the current (last) commander
     const currentCommander = commanders[commanders.length - 1];
     
-    // Create biography layout with name and service period under portrait
+    // Create decorations display if available
+    const decorationsHtml = currentCommander.decorations && currentCommander.decorations.trim() !== '' 
+        ? `<div class="commander-decorations">
+            <div class="decorations-list">${currentCommander.decorations.toUpperCase()}</div>
+           </div>` 
+        : '';
+
+    // Create biography layout with name, service period, and decorations under portrait
     currentGocBiography.innerHTML = `
         <div class="portrait-container">
             <div class="portrait-frame">
@@ -577,6 +584,7 @@ function populateCurrentGocBiography() {
             </div>
             <div class="portrait-info">
                 <h2 class="commander-title">${currentCommander.name}</h2>
+                ${decorationsHtml}
                 <p class="commander-service-period">${currentCommander.yearOfService}</p>
             </div>
         </div>
