@@ -422,6 +422,7 @@ main::before {
     white-space: normal;
     max-width: 100%;
     word-wrap: break-word;
+    letter-spacing: 20px;
 }
 
 .commanders-section h1::after {
