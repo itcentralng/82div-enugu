@@ -24,47 +24,237 @@
         <div class="color-strip strip-5"></div>
     </div>
     
-    <header>
-        <div class="header-card-container">
-            <!-- Top Section: History Card Only -->
-            <div class="top-section">
-                <div class="history-current-container">
-                    <!-- History Card -->
-                    <div class="history-card" onclick="goToHistoryWithTransition()">
-                        <div class="card-inner">
-                            <div class="card-front">
-                                <div class="card-icon">
-                                    <img src="images/82nd-logo.png" alt="82nd Division Logo" class="header-logo" id="logo">
+    <!-- ============================================ -->
+    <!-- HOME VIEW -->
+    <!-- ============================================ -->
+    <div id="homeView" class="page-view active">
+        <header>
+            <div class="header-card-container">
+                <!-- Top Section: History Card Only -->
+                <div class="top-section">
+                    <div class="history-current-container">
+                        <!-- History Card -->
+                        <div class="history-card" onclick="showHistoryView()">
+                            <div class="card-inner">
+                                <div class="card-front">
+                                    <div class="card-icon">
+                                        <img src="images/82nd-logo.png" alt="82nd Division Logo" class="header-logo" id="logo">
+                                    </div>
+                                    <div class="card-title">HISTORY</div>
                                 </div>
-                                <div class="card-title">HISTORY</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <section class="commanders-section">
-            <h1 id="typedTitle">CHRONICLE OF COMMAND<br>82 DIVISION NIGERIAN ARMY</h1>
-            
-            <!-- Current GOC Biography Section -->
-            <section class="current-goc-biography">
-                <div class="current-goc-badge">CURRENT GENERAL OFFICER COMMANDING</div>
-                <div class="biography-layout" id="currentGocBiography">
-                    <!-- Will be populated by JavaScript -->
+        <main>
+            <section class="commanders-section">
+                <h1 id="typedTitle">CHRONICLE OF COMMAND<br>82 DIVISION NIGERIAN ARMY</h1>
+                
+                <!-- Current GOC Biography Section -->
+                <section class="current-goc-biography">
+                    <div class="current-goc-badge">CURRENT GENERAL OFFICER COMMANDING</div>
+                    <div class="biography-layout" id="currentGocBiography">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Commanders Grid -->
+                <div class="commanders-grid-wrapper">
+                    <div class="commanders-grid" id="commandersGrid">
+                        <!-- Commanders will be populated by JavaScript -->
+                    </div>
                 </div>
             </section>
-            
-            <!-- Commanders Grid -->
-            <div class="commanders-grid-wrapper">
-                <div class="commanders-grid" id="commandersGrid">
-                    <!-- Commanders will be populated by JavaScript -->
+        </main>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- HISTORY VIEW -->
+    <!-- ============================================ -->
+    <div id="historyView" class="page-view">
+        <!-- Floating Back Button -->
+        <div class="floating-back-btn" onclick="showHomeView()" title="Back to Home">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
+        <!-- Floating Logo -->
+        <div class="floating-logo" onclick="showHomeView()" title="82nd Division - Home">
+            <img src="images/82nd-logo.png" alt="82nd Division Logo">
+        </div>
+
+        <main>
+            <section class="history-section">
+                <!-- Hero Banner -->
+                <div class="history-hero-banner">
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <div class="hero-icon"><img src="images/82nd-logo.png" alt="82nd Division Logo" style="width: 60px; height: 60px;"></div>
+                        <h1 class="hero-title">82 DIVISION NIGERIAN ARMY</h1>
+                        <div class="hero-divider"></div>
+                        <p class="hero-motto">THE HOME OF THE FIRE SPITTING DRAGON</p>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">1975</div>
+                                <div class="stat-label">Established</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">39</div>
+                                <div class="stat-label">Commanders</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-content">
+                    <div class="history-section-card">
+                        <h2>1.</h2>
+                        <p>Headquarters 82 Division Area of Responsibility covers the entire South East States comprising Anambra, Abia, Enugu, Ebonyi and Imo States and the South-South State of Cross River's State respectively. The Division was established in 1975, General Mamman Jiya Vatsa established the doctrinal basis for the establishment of 82 Division, including it's naming after 82nd West African Division. In 1982 Colonel Musa Bityong aided the establishment of the first Airborne of a "Can do, special forces" officer "a soldier's soldier" squad in the Division. The Division is a composite Division operating on air, land and the riverine domains. Its amphibious operations are usually conducted within the riverine area of Abia, Anambra, Imo and Cross River States.</p>
+                    </div>
+                    
+                    <div class="history-section-card">
+                        <h2>2.</h2>
+                        <p>The Division is one of the maneuvers divisions of the Nigerian Army (NA) and it derives its roots from Camp HQ 2 Bde Lagos in 1961, which as a small administrative unit expanded and eventually metamorphosed into the Lagos Garrison Organization (LGO). In 1975, the LGO became the 4th Infantry Division of the NA. Following the reorganization of the NA in 1980, the 4th Infantry Division was re-designated 82 Composite Division and relocated to Enugu in 1981. The Figure '82' was chosen to honour the Nigerian soldiers who fought in the 82nd Division of the West African Frontier Force during the Burma Campaign of the Second World War. The Division was relocated to Enugu because of the envisaged threat in the operational environment from the eastern flank of Nigeria that may necessitate the conduct of land, sea and air operations. This also accounts for the composite designation of the Division.</p>
+                    </div>
+                    
+                    <div class="history-section-card">
+                        <h2>3.</h2>
+                        <p>The Division is now simply called 82 Division Nigerian Army and its mascot is the Dragon, while its Motto is 'Firepower and Versatility'. The Division's Logo changed from the 'Palm Tree' of the Lagos Garrison Organization, first to the more aggressive 'Scorpion' adopted by the then 4th Infantry Division and later to the present 'Dragon'. The Dragon is a mythical fire-spitting, man eating reptile fabled to be able to swim, walk and fly. It is generally believed that the dragon was firm and audacious, such that when it gripped an object with its claws, it would not let go until it either tore it apart or mauled it in one way or the other. The Division was thus founded upon the characteristics of a Dragon. The logo of the Division has the Dragon superimposed on a background of 3 colours; namely deep blue, sky blue and brown. The deep blue represents water, the sky blue represents air and brown represents land; depicting its amphibious, airborne, and land capabilities respectively.</p>
+                    </div>
+                    
+                    <div class="history-section-card">
+                        <h2>4.</h2>
+                        <p>The 82 Division Nigerian Army, renowned for its bravery and resilience, has a symbol that embodies its fearless spirit and serves as a beacon of excellence, with a legendary mascot. This fiery symbol has captured the imagination of soldiers and civilians alike, inspiring courage and resilience in the face of adversity. The fire spitting dragon mascot was introduced in 1995 and was officially unveiled during the Division's 21st anniversary celebration in 1996, as part of the division's rebranding efforts. Since then, it has become an integral part of the Division's identity. It was subsequently designed by Captain (later Colonel) Ibrahim Bature and a team of soldiers and local artists. The Dragon mascot embodies key values of the 82 Division which are highlighted below:</p>
+                    
+                        <div class="dragon-values">
+                            <div class="dragon-value-card">
+                                <div class="card-icon"><img src="images/82nd-logo.png" alt="82nd Division Logo" style="width: 40px; height: 40px;"></div>
+                                <h3 class="card-title">Strength</h3>
+                                <p class="card-description">Embodying the Division's military prowess and unwavering resolve.</p>
+                            </div>
+                            <div class="dragon-value-card">
+                                <div class="card-icon"><img src="images/82nd-logo.png" alt="82nd Division Logo" style="width: 40px; height: 40px;"></div>
+                                <h3 class="card-title">Courage</h3>
+                                <p class="card-description">Inspiring soldiers to face challenges with valour and determination.</p>
+                            </div>
+                            <div class="dragon-value-card">
+                                <div class="card-icon"><img src="images/82nd-logo.png" alt="82nd Division Logo" style="width: 40px; height: 40px;"></div>
+                                <h3 class="card-title">Resilience</h3>
+                                <p class="card-description">Reflecting the division's ability to adapt and overcome adversity. The Dragon reminds us that we are the defenders of our great nation. It fuels our passion to serve with honor and distinction. Beyond its symbolic significance, the Dragon has become an integral part of the entire barrack community.</p>
+                            </div>
+                            <div class="dragon-value-card">
+                                <div class="card-icon"><img src="images/82nd-logo.png" alt="82nd Division Logo" style="width: 40px; height: 40px;"></div>
+                                <h3 class="card-title">Morale Boost</h3>
+                                <p class="card-description">Soldiers draw motivation from the Dragon's fearless spirit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mascot-gallery-section">
+                        <h2>MASCOT GALLERY</h2>
+                        <p class="gallery-description">Witness the mighty Dragon in all its glory - the legendary mascot that represents the strength, courage, and resilience of the 82 Division.</p>
+                        <div class="mascot-gallery">
+                            <div class="mascot-image-container">
+                                <img src="images/mascot/1002444049.jpg" alt="82 Division Dragon Mascot" class="mascot-gallery-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">Fire Spitting Dragon</div>
+                                </div>
+                            </div>
+                            <div class="mascot-image-container">
+                                <img src="images/mascot/1002444051.jpg" alt="82 Division Dragon Mascot" class="mascot-gallery-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">Embodiment of Courage</div>
+                                </div>
+                            </div>
+                            <div class="mascot-image-container">
+                                <img src="images/mascot/1002444061.jpg" alt="82 Division Dragon Mascot" class="mascot-gallery-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-text">Guardian of the Nation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="history-section-card">
+                        <h2>5.</h2>
+                        <p>The dragon, a mythical fire-spitting reptile, encompasses the composite attributes of the Division. Its Firepower and Versatility is in tandem with the Division's motto. The Dragon mascot stands as a testament to the Division's unwavering commitment to Nigeria's safety and well-being. This legendary symbol embodies the strength, courage, and resilience that define the Division's esteemed soldiers. As we salute the Dragon, we honor the selfless service of the 82 Division "The Home of the Fire Spitting Dragon"</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Image Modal for Full Size Viewing -->
+        <div id="imageModal" class="modal" onclick="closeModal()">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <img id="modalImage" src="" alt="">
+                <div class="modal-info">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDescription"></p>
+                </div>
+                <div class="modal-navigation">
+                    <button class="nav-btn prev-btn" onclick="previousImage()" title="Previous Image">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="nav-btn next-btn" onclick="nextImage()" title="Next Image">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- BIOGRAPHY VIEW -->
+    <!-- ============================================ -->
+    <div id="biographyView" class="page-view">
+        <!-- Floating Back Button -->
+        <div class="floating-back-btn" onclick="showHomeView()" title="Back to Home">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
+        <main>
+            <section class="biography-section">
+                <!-- Reading Progress Bar -->
+                <div class="reading-progress-bar"></div>
+                
+                <div class="biography-layout">
+                    <div class="portrait-container">
+                        <div class="portrait-frame">
+                            <img id="commanderPortrait" src="" alt="Commander Portrait" class="commander-portrait">
+                            <div class="portrait-shine"></div>
+                        </div>
+                    </div>
+                    <div class="biography-text-container">
+                        <div class="biography-header">
+                            <h1 id="commanderName" class="commander-title"></h1>
+                        </div>
+                        <div class="service-period-wrapper">
+                            <p id="commanderService" class="commander-service-period"></p>
+                        </div>
+                        <div class="biography-text-box">
+                            <div class="text-box-header">
+                                <span class="header-icon">📜</span>
+                                <span class="header-text">BIOGRAPHY</span>
+                                <span class="header-icon">📜</span>
+                            </div>
+                            <p id="biographyText" class="typing-text"></p>
+                            <span class="typing-cursor" id="typingCursor">|</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>

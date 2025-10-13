@@ -321,39 +321,19 @@ const biographyContent = document.getElementById('biographyContent');
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-    const currentPage = window.location.pathname.split('/').pop();
-    
     // Initialize color transition system
     initializeColorTransitions();
     
-    if (currentPage === 'index.html' || currentPage === '') {
-        initializeHomePage();
-    } else if (currentPage === 'biography.html') {
-        initializeBiographyPage();
-    }
+    // Initialize home page
+    initializeHomePage();
+    
+    // Initialize history page components (but keep hidden)
+    initializeMascotGallery();
 });
 
 // Initialize home page
 function initializeHomePage() {
-    // Add event listener for header card (replaces separate logo and history listeners)
-    const headerCard = document.querySelector('.header-card');
-    if (headerCard) {
-        headerCard.addEventListener('click', goToHistoryWithTransition);
-        headerCard.addEventListener('mouseenter', function() {
-            triggerHoverColorEffect(this);
-        });
-    }
-    
-    // Keep logo click for backward compatibility (if someone clicks just the logo)
-    const logo = document.getElementById('logo');
-    if (logo) {
-        logo.addEventListener('click', goToHistoryWithTransition);
-        logo.addEventListener('mouseenter', function() {
-            triggerHoverColorEffect(this);
-        });
-    }
-    
-    // Add event listener for history card in new layout
+    // Add event listener for history card
     const historyCard = document.querySelector('.history-card');
     if (historyCard) {
         historyCard.addEventListener('mouseenter', function() {
@@ -485,18 +465,83 @@ function resumeInfiniteScroll() {
     }
 }
 
-// Initialize biography page
-function initializeBiographyPage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const commanderId = parseInt(urlParams.get('id'));
-    
-    if (commanderId) {
+// ============================================
+// SPA NAVIGATION SYSTEM
+// ============================================
+
+let currentView = 'home';
+let isTransitioning = false;
+
+// Show Home View
+function showHomeView() {
+    if (isTransitioning || currentView === 'home') return;
+    transitionToView('homeView', 'home');
+}
+
+// Show History View
+function showHistoryView() {
+    if (isTransitioning || currentView === 'history') return;
+    transitionToView('historyView', 'history');
+}
+
+// Show Biography View
+function showBiographyView(commanderId) {
+    if (isTransitioning) return;
+    transitionToView('biographyView', 'biography', () => {
         displayBiography(commanderId);
-    } else {
-        // If no ID provided, show first commander by default
-        displayBiography(1);
+    });
+}
+
+// Core transition function
+function transitionToView(targetViewId, viewName, callback = null) {
+    if (isTransitioning) return;
+    
+    isTransitioning = true;
+    
+    // Get current and target views
+    const currentViewElement = document.querySelector('.page-view.active');
+    const targetViewElement = document.getElementById(targetViewId);
+    
+    if (!targetViewElement) {
+        isTransitioning = false;
+        return;
     }
     
+    // Trigger color transition
+    triggerColorTransition(() => {
+        // Hide current view
+        if (currentViewElement) {
+            currentViewElement.classList.remove('active');
+            currentViewElement.classList.add('transitioning-out');
+        }
+        
+        // Show target view
+        targetViewElement.classList.add('transitioning-in');
+        
+        // Execute callback if provided
+        if (callback) {
+            callback();
+        }
+        
+        // Complete transition after a brief moment
+        setTimeout(() => {
+            if (currentViewElement) {
+                currentViewElement.classList.remove('transitioning-out');
+            }
+            targetViewElement.classList.remove('transitioning-in');
+            targetViewElement.classList.add('active');
+            
+            currentView = viewName;
+            isTransitioning = false;
+            
+            // Scroll to top of new view
+            targetViewElement.scrollTop = 0;
+        }, 50);
+    });
+}
+
+// Initialize biography page
+function initializeBiographyPage() {
     // Initialize reading progress bar
     initializeReadingProgress();
     
@@ -506,8 +551,8 @@ function initializeBiographyPage() {
 
 // Initialize reading progress bar
 function initializeReadingProgress() {
-    const textBox = document.querySelector('.biography-text-box');
-    const progressBar = document.querySelector('.reading-progress-bar');
+    const textBox = document.querySelector('#biographyView .biography-text-box');
+    const progressBar = document.querySelector('#biographyView .reading-progress-bar');
     
     if (!textBox || !progressBar) return;
     
@@ -523,13 +568,16 @@ function initializeReadingProgress() {
 // Add keyboard shortcuts for biography page
 function initializeBiographyKeyboardShortcuts() {
     document.addEventListener('keydown', function(event) {
+        // Only apply shortcuts when biography view is active
+        if (currentView !== 'biography') return;
+        
         // ESC key to go back
         if (event.key === 'Escape') {
-            goHomeWithTransition();
+            showHomeView();
         }
         
         // Arrow keys for scrolling the biography text
-        const textBox = document.querySelector('.biography-text-box');
+        const textBox = document.querySelector('#biographyView .biography-text-box');
         if (!textBox) return;
         
         if (event.key === 'ArrowDown') {
@@ -558,6 +606,34 @@ function initializeBiographyKeyboardShortcuts() {
             });
         }
     });
+}
+
+// Initialize biography components on load
+initializeBiographyPage();
+
+// Navigation functions (fallbacks for backward compatibility)
+function goToHistory() {
+    showHistoryView();
+}
+
+function goHome() {
+    showHomeView();
+}
+
+function goToBiography(commanderId) {
+    showBiographyView(commanderId);
+}
+
+function goToHistoryWithTransition() {
+    showHistoryView();
+}
+
+function goHomeWithTransition() {
+    showHomeView();
+}
+
+function goToBiographyWithTransition(commanderId) {
+    showBiographyView(commanderId);
 }
 
 // Populate current GOC biography section
@@ -598,7 +674,7 @@ function populateCurrentGocBiography() {
     
     // Add click event to go to full biography page
     currentGocBiography.addEventListener('click', function() {
-        goToBiographyWithTransition(currentCommander.id);
+        showBiographyView(currentCommander.id);
     });
     
     // Add hover effect
@@ -632,7 +708,7 @@ function populateCommanders() {
         
         const commanderCard = document.createElement('div');
         commanderCard.className = 'commander-card';
-        commanderCard.onclick = () => goToBiographyWithTransition(commander.id);
+        commanderCard.onclick = () => showBiographyView(commander.id);
         commanderCard.addEventListener('mouseenter', function() {
             triggerHoverColorEffect(this);
         });
@@ -766,30 +842,33 @@ function triggerColorTransition(callback = null) {
         }, index * 100);
     });
     
-    // Wait for animation to complete, then slide out
+    // Wait for strips to fully cover the screen, then execute callback
     setTimeout(() => {
-        strips.forEach((strip, index) => {
-            setTimeout(() => {
-                strip.classList.remove('slide-in');
-                strip.classList.add('slide-out');
-            }, index * 50);
-        });
-        
-        // Execute callback in the middle of transition
+        // Execute callback (switch views) when screen is fully covered
         if (callback) {
-            setTimeout(callback, 400);
+            callback();
         }
         
-        // Clean up and restart auto-cycle
+        // Start sliding out
         setTimeout(() => {
-            container.classList.remove('active');
-            strips.forEach(strip => {
-                strip.classList.remove('slide-in', 'slide-out');
-                strip.classList.add('auto-cycle');
+            strips.forEach((strip, index) => {
+                setTimeout(() => {
+                    strip.classList.remove('slide-in');
+                    strip.classList.add('slide-out');
+                }, index * 50);
             });
-        }, 1000);
+            
+            // Clean up and restart auto-cycle
+            setTimeout(() => {
+                container.classList.remove('active');
+                strips.forEach(strip => {
+                    strip.classList.remove('slide-in', 'slide-out');
+                    strip.classList.add('auto-cycle');
+                });
+            }, 800);
+        }, 200);
         
-    }, 1200);
+    }, 600);
 }
 
 function triggerHoverColorEffect(element) {
@@ -827,27 +906,6 @@ function triggerHoverColorEffect(element) {
         }
     }, 700);
 }
-
-// Enhanced navigation with color transitions
-function goToHistoryWithTransition() {
-    triggerColorTransition(() => {
-        window.location.href = 'history.html';
-    });
-}
-
-function goHomeWithTransition() {
-    triggerColorTransition(() => {
-        window.location.href = 'index.html';
-    });
-}
-
-function goToBiographyWithTransition(commanderId) {
-    triggerColorTransition(() => {
-        window.location.href = `biography.html?id=${commanderId}`;
-    });
-}
-
-// Typing animation function removed - now using static text
 
 // Biography typing animation function
 function startBiographyTyping(text, textElement, cursorElement) {
