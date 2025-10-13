@@ -695,9 +695,9 @@ function displayBiography(commanderId) {
     }
     
     if (serviceElement) {
-        let serviceText = `Service Period: ${commander.yearOfService}`;
+        let serviceText = `${commander.yearOfService}`;
         if (commander.decorations && commander.decorations.trim() !== '') {
-            serviceText += `\nDecorations: ${commander.decorations.toUpperCase()}`;
+            serviceText += `\n${commander.decorations.toUpperCase()}`;
         }
         serviceElement.textContent = serviceText;
         // Preserve line breaks in service text
