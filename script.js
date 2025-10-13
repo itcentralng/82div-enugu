@@ -907,9 +907,20 @@ function triggerHoverColorEffect(element) {
     }, 700);
 }
 
+// Biography typing animation variables
+let currentTypingTimeout = null;
+let isTyping = false;
+
 // Biography typing animation function
 function startBiographyTyping(text, textElement, cursorElement) {
     if (!text || !textElement) return;
+    
+    // Cancel any ongoing typing animation
+    if (currentTypingTimeout) {
+        clearTimeout(currentTypingTimeout);
+        currentTypingTimeout = null;
+    }
+    isTyping = false;
     
     // Clear any existing content
     textElement.textContent = '';
@@ -917,7 +928,9 @@ function startBiographyTyping(text, textElement, cursorElement) {
     // Add typing class to text box
     const textBox = textElement.closest('.biography-text-box');
     if (textBox) {
+        textBox.classList.remove('typing-complete');
         textBox.classList.add('typing-active');
+        textBox.scrollTop = 0; // Reset scroll position
     }
     
     // Show cursor
@@ -927,57 +940,62 @@ function startBiographyTyping(text, textElement, cursorElement) {
     
     let currentIndex = 0;
     const typingSpeed = 20; // Faster speed - 20ms instead of 30ms
+    isTyping = true;
     
     function typeCharacter() {
-        if (currentIndex < text.length) {
-            textElement.textContent = text.substring(0, currentIndex + 1);
-            currentIndex++;
-            
-            // Variable speed for punctuation
-            let delay = typingSpeed;
-            const currentChar = text[currentIndex - 1];
-            
-            if (currentChar === '.' || currentChar === '!' || currentChar === '?') {
-                delay = typingSpeed * 6; // Shorter pause at sentence endings
-            } else if (currentChar === ',' || currentChar === ';' || currentChar === ':') {
-                delay = typingSpeed * 2.5; // Shorter pause at commas
-            } else if (currentChar === ' ') {
-                delay = typingSpeed * 0.4; // Faster for spaces
-            }
-            
-            // Auto-scroll to keep text visible
-            if (textBox && textBox.scrollHeight > textBox.clientHeight) {
-                textBox.scrollTop = textBox.scrollHeight;
-            }
-            
-            setTimeout(typeCharacter, delay);
-        } else {
-            // Finished typing, hide cursor after a delay
-            if (textBox) {
-                textBox.classList.remove('typing-active');
-                textBox.classList.add('typing-complete');
-                
-                // Smooth scroll to top after completion
-                setTimeout(() => {
-                    if (textBox.scrollTop > 0) {
-                        textBox.scrollTo({
-                            top: 0,
-                            behavior: 'smooth'
-                        });
-                    }
-                }, 1000);
-            }
-            
-            setTimeout(() => {
-                if (cursorElement) {
-                    cursorElement.style.display = 'none';
+        // Check if typing was cancelled
+        if (!isTyping || currentIndex >= text.length) {
+            if (currentIndex >= text.length) {
+                // Finished typing normally
+                if (textBox) {
+                    textBox.classList.remove('typing-active');
+                    textBox.classList.add('typing-complete');
+                    
+                    // Smooth scroll to top after completion
+                    currentTypingTimeout = setTimeout(() => {
+                        if (textBox.scrollTop > 0 && isTyping) {
+                            textBox.scrollTo({
+                                top: 0,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }, 1000);
                 }
-            }, 2000);
+                
+                currentTypingTimeout = setTimeout(() => {
+                    if (cursorElement && isTyping) {
+                        cursorElement.style.display = 'none';
+                    }
+                }, 2000);
+            }
+            return;
         }
+        
+        textElement.textContent = text.substring(0, currentIndex + 1);
+        currentIndex++;
+        
+        // Variable speed for punctuation
+        let delay = typingSpeed;
+        const currentChar = text[currentIndex - 1];
+        
+        if (currentChar === '.' || currentChar === '!' || currentChar === '?') {
+            delay = typingSpeed * 6; // Shorter pause at sentence endings
+        } else if (currentChar === ',' || currentChar === ';' || currentChar === ':') {
+            delay = typingSpeed * 2.5; // Shorter pause at commas
+        } else if (currentChar === ' ') {
+            delay = typingSpeed * 0.4; // Faster for spaces
+        }
+        
+        // Auto-scroll to keep text visible
+        if (textBox && textBox.scrollHeight > textBox.clientHeight && isTyping) {
+            textBox.scrollTop = textBox.scrollHeight;
+        }
+        
+        currentTypingTimeout = setTimeout(typeCharacter, delay);
     }
     
     // Start typing after a brief delay
-    setTimeout(typeCharacter, 800);
+    currentTypingTimeout = setTimeout(typeCharacter, 800);
 }
 
 // Add scroll-triggered color effects
