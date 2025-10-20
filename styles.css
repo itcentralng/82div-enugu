@@ -707,14 +707,13 @@ main::before {
 
 .history-card .card-icon {
     margin-bottom: 8px;
-    animation: iconFloat 3s ease-in-out infinite;
     display: flex;
     justify-content: center;
 }
 
 .history-card .card-icon .header-logo {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: fill;
     border: 3px solid var(--blue-ncs);
@@ -1494,7 +1493,6 @@ main::before {
     margin-bottom: 20px;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
     transition: all 0.4s ease;
-    animation: iconFloat 3s ease-in-out infinite;
 }
 
 @keyframes iconFloat {
