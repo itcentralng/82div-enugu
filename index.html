@@ -8,6 +8,22 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Welcome/Start Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-content">
+            <img src="images/82nd-logo.png" alt="82nd Division Logo" class="welcome-logo">
+            <h1 class="welcome-title">82nd Division</h1>
+            <h2 class="welcome-subtitle">Chronicle of Commanders</h2>
+            <button id="enterButton" class="enter-button">
+                <span>ENTER</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </button>
+            <p class="welcome-note">Click to begin with audio</p>
+        </div>
+    </div>
+    
     <!-- Background Audio -->
     <audio id="backgroundAudio" loop>
         <source src="yanni.mp3" type="audio/mpeg">

@@ -1,29 +1,28 @@
-// Background Audio
+// Background Audio and Welcome Screen
 let backgroundAudio = null;
+let welcomeScreen = null;
 
-// Initialize background audio on page load
+// Initialize welcome screen and audio on page load
 window.addEventListener('DOMContentLoaded', () => {
     backgroundAudio = document.getElementById('backgroundAudio');
+    welcomeScreen = document.getElementById('welcomeScreen');
+    const enterButton = document.getElementById('enterButton');
     
-    // Attempt to play audio immediately
-    const playPromise = backgroundAudio.play();
-    
-    if (playPromise !== undefined) {
-        playPromise.catch(error => {
-            // Autoplay was prevented, wait for user interaction
-            console.log('Autoplay prevented. Waiting for user interaction...');
-            
-            // Play on first user interaction
-            const playOnInteraction = () => {
-                backgroundAudio.play();
-                document.removeEventListener('click', playOnInteraction);
-                document.removeEventListener('touchstart', playOnInteraction);
-            };
-            
-            document.addEventListener('click', playOnInteraction);
-            document.addEventListener('touchstart', playOnInteraction);
+    // Handle enter button click
+    enterButton.addEventListener('click', () => {
+        // Play audio
+        backgroundAudio.play().then(() => {
+            console.log('Background audio started');
+        }).catch(error => {
+            console.log('Audio playback failed:', error);
         });
-    }
+        
+        // Hide welcome screen with fade out animation
+        welcomeScreen.style.opacity = '0';
+        setTimeout(() => {
+            welcomeScreen.style.display = 'none';
+        }, 500);
+    });
 });
 
 // Commander data
