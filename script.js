@@ -1,3 +1,31 @@
+// Background Audio
+let backgroundAudio = null;
+
+// Initialize background audio on page load
+window.addEventListener('DOMContentLoaded', () => {
+    backgroundAudio = document.getElementById('backgroundAudio');
+    
+    // Attempt to play audio immediately
+    const playPromise = backgroundAudio.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            // Autoplay was prevented, wait for user interaction
+            console.log('Autoplay prevented. Waiting for user interaction...');
+            
+            // Play on first user interaction
+            const playOnInteraction = () => {
+                backgroundAudio.play();
+                document.removeEventListener('click', playOnInteraction);
+                document.removeEventListener('touchstart', playOnInteraction);
+            };
+            
+            document.addEventListener('click', playOnInteraction);
+            document.addEventListener('touchstart', playOnInteraction);
+        });
+    }
+});
+
 // Commander data
 const commanders = [
     {
