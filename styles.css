@@ -1112,7 +1112,7 @@ main::before {
 
 .current-goc-badge {
     position: absolute;
-    top: -20px;
+    top: -35px;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, 
@@ -1120,13 +1120,13 @@ main::before {
         var(--light-blue-ncs) 50%, 
         var(--blue-ncs) 100%);
     color: var(--cream);
-    padding: 12px 30px;
-    border-radius: 25px;
+    padding: 12px 50px;
+    border-radius: 30px;
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     box-shadow: 
         0 8px 20px rgba(0, 0, 0, 0.4),
         0 4px 10px rgba(0, 136, 183, 0.3),
