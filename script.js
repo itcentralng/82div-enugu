@@ -508,7 +508,13 @@ function showHomeView() {
 // Show History View
 function showHistoryView() {
     if (isTransitioning || currentView === 'history') return;
-    transitionToView('historyView', 'history');
+    transitionToView('historyView', 'history', () => {
+        // Update GOCs count dynamically
+        const gocsCountElement = document.getElementById('gocsCount');
+        if (gocsCountElement) {
+            gocsCountElement.textContent = commanders.length;
+        }
+    });
 }
 
 // Show Biography View
