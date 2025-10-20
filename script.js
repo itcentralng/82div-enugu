@@ -337,7 +337,7 @@ const commanders = [
         image: "images/olatoye.jpg",
         yearOfService: "27-Jan-25 – Date",
         decorations: "GSS psc(+) ndc(TZ) CM FCM GOM TSM BSc(Hons) MSSS(TZ) MNIA FCAI FNIM SEF(HKS)",
-        biography: "Maj Gen Oluyemi Thomas Olatoye was born on 4 Jan 71 in Ibadan and hails from Obafemi Owode Local Government Area of Ogun State. He was admitted into the prestigious Nigerian Defence Academy on 10 Sep 89 as a member of 41 Regular Course and was commissioned into the Nigerian Army Infantry Corp as a Second Lieutenant on 17 Sep 94. He was appointed as the Thirty Ninth General Officer Commanding 82 Division and Force Commander Joint Task Force (South East) Operation UDO KA on 27 Jan 25. Maj Gen Oluyemi Thomas Olatoye is highly recognised and honoured for his exemplary leadership, professionalism, unwavering commitment to duty, sound organisational ability and strict military bearing."
+        biography: "Maj Gen Oluyemi Thomas Olatoye was born on 4 Jan 71 in Ibadan and hails from Obafemi Owode Local Government Area of Ogun State. He was admitted into the prestigious Nigerian Defence Academy on 10 Sep 89 as a member of 41 Regular Course and was commissioned into the Nigerian Army Infantry Corps as a Second Lieutenant on 17 Sep 94. He was appointed as the Thirty Ninth General Officer Commanding 82 Division and Force Commander Joint Task Force (South East) Operation UDO KA on 27 Jan 25. Maj Gen Oluyemi Thomas Olatoye is highly recognised and honoured for his exemplary leadership, professionalism, unwavering commitment to duty, sound organisational ability and strict military bearing."
     }
 ];
 
