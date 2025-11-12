@@ -345,7 +345,19 @@ const commanders = [
         image: "images/fadairo.jpg",
         yearOfService: "15-Oct-25xxxx – Date",
         decorations: "DSS psc CM FTAM ndc(Indian) MPhil MCSD FCM NAOTCM",
-        biography: "Maj Gen Oluyemi Thomas Olatoye was born on 4 Jan 71 in Ibadan and hails from Obafemi Owode Local Government Area of Ogun State. He was admitted into the prestigious Nigerian Defence Academy on 10 Sep 89 as a member of 41 Regular Course and was commissioned into the Nigerian Army Infantry Corps as a Second Lieutenant on 17 Sep 94. He was appointed as the Thirty Ninth General Officer Commanding 82 Division and Force Commander Joint Task Force (South East) Operation UDO KA on 27 Jan 25. Maj Gen Oluyemi Thomas Olatoye is highly recognised and honoured for his exemplary leadership, professionalism, unwavering commitment to duty, sound organisational ability and strict military bearing."
+        biography: `Major General Oluremi Ayobami Fadairo was born on 5th December 1972 and hails from Ibarapa East Local Government Area of Oyo State. He was admitted into the prestigious Nigerian Defence Academy in September 1991 as a member of 43 Regular Course and was commissioned into the Nigerian Army Corps of Infantry as a Second Lieutenant on 21st September 1996. Gen Fadairo, a bonafide Member of the Royal United Services Institute (RUSI), the leading Defence think-tank of the United Kingdom is a consummate Infantry Senior Officer, who has earned himself several medals which includes:	
+a.	Economic Community Monitoring Group (ECOMOG) Medal
+b.	United Nations Mission in Sierra Leone (UNAMSIL) Medal
+c.	Multinational Joint Task Force (MNJTF) Medal
+d.	International Military Advisory and Training Team Medal
+e.	Operation Hadin Kai Medal
+f.	Operation Hadarin Daji Medal
+g.	 Field Command Medal (FCM)
+Amongst other awards and decorations.
+
+ The Senior Officer has a Bachelor of Science in Mathematics, Masters in Conflict Security and Development, Masters in philosophy from the University of Madras Chennai India and is a member of the National Mathematical Association of Nigeria.
+
+General Fadairo is an officer with a large heart who is highly recognised for prioritising the welfare of his soldiers. His leadership is defined by a deep sense of responsibility, fairness and unwavering dedication to those under his command. He leads by example fostering a culture of discipline, professionalism and excellence within the ranks. Major General OA Fadairo is married to Mrs. Hilda Ijeoma Fadairo and the union is blessed with children.`
     }
 ];
 
@@ -692,6 +704,9 @@ function populateCurrentGocBiography() {
            </div>` 
         : '';
 
+    // Format biography text to preserve line breaks
+    const formattedBiography = currentCommander.biography.replace(/\n/g, '<br>');
+    
     // Create biography layout with name, service period, and decorations under portrait
     currentGocBiography.innerHTML = `
         <div class="portrait-container">
@@ -708,7 +723,7 @@ function populateCurrentGocBiography() {
         <div class="biography-text-container">
             <div class="biography-text-box">
                 
-                <p class="biography-text">${currentCommander.biography}</p>
+                <div class="biography-text">${formattedBiography}</div>
             </div>
         </div>
     `;
