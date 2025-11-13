@@ -335,7 +335,7 @@ const commanders = [
         id: 39,
         name: "MAJ GEN OT OLATOYE (N/9907)",
         image: "images/olatoye.jpg",
-        yearOfService: "27-Jan-25 – 15-Oct-25xxxx",
+        yearOfService: "27-Jan-25 – 5-Nov-2025",
         decorations: "GSS psc(+) ndc(TZ) CM FCM GOM TSM BSc(Hons) MSSS(TZ) MNIA FCAI FNIM SEF(HKS)",
         biography: "Maj Gen Oluyemi Thomas Olatoye was born on 4 Jan 71 in Ibadan and hails from Obafemi Owode Local Government Area of Ogun State. He was admitted into the prestigious Nigerian Defence Academy on 10 Sep 89 as a member of 41 Regular Course and was commissioned into the Nigerian Army Infantry Corps as a Second Lieutenant on 17 Sep 94. He was appointed as the Thirty Ninth General Officer Commanding 82 Division and Force Commander Joint Task Force (South East) Operation UDO KA on 27 Jan 25. Maj Gen Oluyemi Thomas Olatoye is highly recognised and honoured for his exemplary leadership, professionalism, unwavering commitment to duty, sound organisational ability and strict military bearing."
     },
@@ -343,7 +343,7 @@ const commanders = [
         id: 40,
         name: "MAJ GEN OA FADAIRO (N/9907)",
         image: "images/fadairo.jpg",
-        yearOfService: "15-Oct-25xxxx – Date",
+        yearOfService: "5-Nov-2025 – Date",
         decorations: "DSS psc CM FTAM ndc(Indian) MPhil MCSD FCM NAOTCM",
         biography: `Major General Oluremi Ayobami Fadairo was born on 5th December 1972 and hails from Ibarapa East Local Government Area of Oyo State. He was admitted into the prestigious Nigerian Defence Academy in September 1991 as a member of 43 Regular Course and was commissioned into the Nigerian Army Corps of Infantry as a Second Lieutenant on 21st September 1996. Gen Fadairo, a bonafide Member of the Royal United Services Institute (RUSI), the leading Defence think-tank of the United Kingdom is a consummate Infantry Senior Officer, who has earned himself several medals which includes:	
 a.	Economic Community Monitoring Group (ECOMOG) Medal
