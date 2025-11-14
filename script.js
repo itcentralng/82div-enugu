@@ -450,7 +450,7 @@ function startInfiniteScroll() {
     if (isScrolling) return;
     
     isScrolling = true;
-    const scrollSpeed = 0.8; // Increased speed for faster scrolling
+    const scrollSpeed = 2; // Increased speed for faster scrolling
     
     function scrollStep() {
         if (!isScrolling) return;
