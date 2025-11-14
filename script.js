@@ -413,30 +413,95 @@ function initializeInfiniteScroll() {
     
     const wrapper = commandersGrid.parentElement;
     
+    // Enable manual scrolling on the wrapper
+    wrapper.style.overflowY = 'auto';
+    
     // Start automatic scrolling after a brief delay
     setTimeout(() => {
         startInfiniteScroll();
     }, 3000);
     
-    // Pause scrolling on hover over the wrapper
+    // Pause auto-scroll on user interaction (mouse wheel or touchpad scroll)
     if (wrapper) {
+        wrapper.addEventListener('wheel', pauseAndResumeScroll, { passive: true });
+        wrapper.addEventListener('touchmove', pauseAndResumeScroll, { passive: true });
+        wrapper.addEventListener('keydown', handleGridKeyboard);
+        
+        // Pause on mouse enter/leave for better UX
         wrapper.addEventListener('mouseenter', pauseInfiniteScroll);
-        wrapper.addEventListener('mouseleave', resumeInfiniteScroll);
+        
+        // Resume scrolling when user stops interacting
+        let scrollTimeout;
+        wrapper.addEventListener('mouseleave', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                resumeInfiniteScroll();
+            }, 1000);
+        });
     }
     
     // Handle window resize
     window.addEventListener('resize', handleInfiniteScrollResize);
 }
 
+// Pause and resume scroll (for user interactions)
+function pauseAndResumeScroll() {
+    pauseInfiniteScroll();
+    
+    // Resume after user stops scrolling
+    let scrollTimeout;
+    const wrapper = commandersGrid.parentElement;
+    
+    if (wrapper) {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            resumeInfiniteScroll();
+        }, 3000); // Resume after 3 seconds of inactivity
+    }
+}
+
+// Handle keyboard controls for grid scrolling
+function handleGridKeyboard(event) {
+    if (currentView !== 'home') return;
+    
+    const wrapper = commandersGrid.parentElement;
+    if (!wrapper) return;
+    
+    const scrollAmount = 300; // pixels to scroll per keypress
+    
+    if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        wrapper.scrollBy({
+            top: -scrollAmount,
+            behavior: 'smooth'
+        });
+        pauseInfiniteScroll();
+    } else if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        wrapper.scrollBy({
+            top: scrollAmount,
+            behavior: 'smooth'
+        });
+        pauseInfiniteScroll();
+    } else if (event.key === 'Home') {
+        event.preventDefault();
+        wrapper.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        pauseInfiniteScroll();
+    } else if (event.key === 'End') {
+        event.preventDefault();
+        wrapper.scrollTo({
+            top: wrapper.scrollHeight,
+            behavior: 'smooth'
+        });
+        pauseInfiniteScroll();
+    }
+}
+
 // Handle resize events for infinite scroll
 function handleInfiniteScrollResize() {
-    // Reset scroll position on resize to prevent layout issues
-    currentScrollPosition = 0;
-    if (commandersGrid) {
-        commandersGrid.style.transform = 'translateY(0px)';
-    }
-    
-    // Restart scrolling after a brief delay
     pauseInfiniteScroll();
     setTimeout(() => {
         if (!isScrolling) {
@@ -445,57 +510,39 @@ function handleInfiniteScrollResize() {
     }, 1000);
 }
 
-// Start infinite scrolling animation
+// Start infinite scrolling animation using native scroll
 function startInfiniteScroll() {
     if (isScrolling) return;
     
     isScrolling = true;
-    const scrollSpeed = 2; // Increased speed for faster scrolling
+    const wrapper = commandersGrid.parentElement;
+    const scrollSpeed = 5; // pixels per frame
+    let scrollTimeout;
     
     function scrollStep() {
-        if (!isScrolling) return;
-        
-        currentScrollPosition += scrollSpeed;
-        
-        // Apply smooth transform to create upward scrolling effect
-        commandersGrid.style.transform = `translateY(-${currentScrollPosition}px)`;
-        
-        // Calculate current grid layout
-        const cardsPerRow = getCurrentCardsPerRow();
-        const cardHeight = 480; // card height
-        const gap = getCurrentGap();
-        const rowHeight = cardHeight + gap;
-        const rowsPerCycle = Math.ceil(commandersData.length / cardsPerRow);
-        const cycleHeight = rowsPerCycle * rowHeight;
-        
-        // Reset position when we've scrolled through one complete cycle
-        if (currentScrollPosition >= cycleHeight) {
-            currentScrollPosition = 0;
+        if (!isScrolling) {
+            clearTimeout(scrollTimeout);
+            return;
         }
         
-        requestAnimationFrame(scrollStep);
+        wrapper.scrollBy({
+            top: scrollSpeed,
+            left: 0,
+            behavior: 'auto'
+        });
+        
+        // Check if we've scrolled to the bottom
+        const isAtBottom = wrapper.scrollHeight - wrapper.scrollTop - wrapper.clientHeight < 1;
+        
+        if (isAtBottom) {
+            // Reset to top for seamless loop
+            wrapper.scrollTop = 0;
+        }
+        
+        scrollTimeout = setTimeout(scrollStep, 30); // Update every 30ms
     }
     
-    requestAnimationFrame(scrollStep);
-}
-
-// Get current number of cards per row based on screen size
-function getCurrentCardsPerRow() {
-    const width = window.innerWidth;
-    if (width <= 600) return 1;
-    if (width <= 768) return 2;
-    if (width <= 992) return 3;
-    if (width <= 1200) return 4;
-    return 5;
-}
-
-// Get current gap size based on screen size
-function getCurrentGap() {
-    const width = window.innerWidth;
-    if (width <= 768) return 30;
-    if (width <= 992) return 40;
-    if (width <= 1200) return 50;
-    return 70;
+    scrollTimeout = setTimeout(scrollStep, 30);
 }
 
 // Pause infinite scrolling
@@ -506,9 +553,7 @@ function pauseInfiniteScroll() {
 // Resume infinite scrolling
 function resumeInfiniteScroll() {
     if (!isScrolling) {
-        setTimeout(() => {
-            startInfiniteScroll();
-        }, 1000); // Resume after 1 second delay
+        startInfiniteScroll();
     }
 }
 
@@ -755,8 +800,8 @@ function populateCommanders() {
     // Get all commanders except the current one (last in array)
     commandersData = commanders.slice(0, -1);
     
-    // Create enough cards to fill the grid multiple times for smooth scrolling
-    const cardsToShow = commandersData.length * 3; // Show 3 full cycles
+    // Create cards - show all commanders multiple times for seamless looping
+    const cardsToShow = commandersData.length * 4; // Show 4 full cycles for smooth looping
     
     for (let i = 0; i < cardsToShow; i++) {
         const commanderIndex = i % commandersData.length;
