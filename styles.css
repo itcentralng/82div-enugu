@@ -1248,8 +1248,11 @@ main::before {
 .current-goc-biography .biography-text-box {
     height: 820px; /* Match exact height of portrait + name + service period */
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 136, 183, 0.5) transparent;
+    touch-action: manipulation;
 }
 
 .current-goc-biography .biography-text-box::-webkit-scrollbar {
