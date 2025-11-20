@@ -341,7 +341,7 @@ const commanders = [
     },
     {
         id: 40,
-        name: "MAJ GEN OA FADAIRO (N/9907)",
+        name: "MAJ GEN OA FADAIRO (N/10169)",
         image: "images/fadairo.jpg",
         yearOfService: "5-Nov-2025 – Date",
         decorations: "DSS psc CM FTAM ndc(Indian) MPhil MCSD FCM NAOTCM",
