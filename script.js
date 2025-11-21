@@ -345,19 +345,7 @@ const commanders = [
         image: "images/fadairo.jpg",
         yearOfService: "5-Nov-2025 – Date",
         decorations: "DSS psc CM FTAM ndc(Indian) MPhil MCSD FCM NAOTCM",
-        biography: `Major General Oluremi Ayobami Fadairo was born on 5th December 1972 and hails from Ibarapa East Local Government Area of Oyo State. He was admitted into the prestigious Nigerian Defence Academy in September 1991 as a member of 43 Regular Course and was commissioned into the Nigerian Army Corps of Infantry as a Second Lieutenant on 21st September 1996. Gen Fadairo, a bonafide Member of the Royal United Services Institute (RUSI), the leading Defence think-tank of the United Kingdom is a consummate Infantry Senior Officer, who has earned himself several medals which includes:	
-a.	Economic Community Monitoring Group (ECOMOG) Medal
-b.	United Nations Mission in Sierra Leone (UNAMSIL) Medal
-c.	Multinational Joint Task Force (MNJTF) Medal
-d.	International Military Advisory and Training Team Medal
-e.	Operation Hadin Kai Medal
-f.	Operation Hadarin Daji Medal
-g.	 Field Command Medal (FCM)
-Amongst other awards and decorations.
-
- The Senior Officer has a Bachelor of Science in Mathematics, Masters in Conflict Security and Development, Masters in philosophy from the University of Madras Chennai India and is a member of the National Mathematical Association of Nigeria.
-
-General Fadairo is an officer with a large heart who is highly recognised for prioritising the welfare of his soldiers. His leadership is defined by a deep sense of responsibility, fairness and unwavering dedication to those under his command. He leads by example fostering a culture of discipline, professionalism and excellence within the ranks. Major General OA Fadairo is married to Mrs. Hilda Ijeoma Fadairo and the union is blessed with children.`
+        biography: `Major General Oluremi Ayobami Fadairo was admitted into the prestigious Nigerian Defence Academy as a member of 43 Regular Course and was commissioned into the Nigerian Army Corps of Infantry as a Second Lieutenant on 21st September 1996. Gen Fadairo, a bonafide Member of the Royal United Services Institute (RUSI), the leading Defence think-tank of the United Kingdom is a consummate Infantry Senior Officer. The Senior Officer has a Bachelor of Science in Mathematics, Masters in Conflict Security and Development, Masters in philosophy from the University of Madras Chennai India and is a member of the National Mathematical Association of Nigeria. General Fadairo’s leadership is defined by a deep sense of responsibility, fairness and unwavering dedication to those under his command. Major General OA Fadairo is married, and the union is blessed with children.`
     }
 ];
 
